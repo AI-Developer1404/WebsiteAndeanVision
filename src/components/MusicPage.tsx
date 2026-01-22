@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Play, Pause, FastForward, Rewind, ShoppingBag, Music } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -203,10 +203,7 @@ const MusicPage: React.FC = () => {
                         <p className="text-sm text-gray-400">{activeSong.type} Mode</p>
 
                         {/* Progress Bar */}
-                        <div className="mt-6 h-1 w-full bg-gray-800 rounded-full overflow-hidden cursor-pointer"
-                            onClick={(e) => {
-                                // Simple seek functionality could be added here
-                            }}>
+                        <div className="mt-6 h-1 w-full bg-gray-800 rounded-full overflow-hidden cursor-pointer">
                             <motion.div
                                 className="h-full bg-andean-gold"
                                 initial={{ width: "0%" }}
