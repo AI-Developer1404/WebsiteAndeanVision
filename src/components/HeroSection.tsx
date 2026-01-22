@@ -17,6 +17,7 @@ const HeroSection: React.FC = () => {
                 <LazyBackgroundVideo
                     src="/background.mp4"
                     poster={heroImage}
+                    priority={true}
                     className="h-full w-full object-cover"
                 />
                 {/* Readability Overlay (Cinematic Vignette) */}

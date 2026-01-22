@@ -5,13 +5,16 @@ interface LazyBackgroundVideoProps {
     poster: string;
     className?: string;
     children?: React.ReactNode;
+    priority?: boolean;
 }
 
-const LazyBackgroundVideo: React.FC<LazyBackgroundVideoProps> = ({ src, poster, className, children }) => {
+const LazyBackgroundVideo: React.FC<LazyBackgroundVideoProps> = ({ src, poster, className, children, priority = false }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [shouldLoad, setShouldLoad] = useState(false);
+    const [shouldLoad, setShouldLoad] = useState(priority); // If priority is true, load immediately
 
     useEffect(() => {
+        if (priority) return; // Skip observer if priority is set
+
         const observer = new IntersectionObserver(
             (entries) => {
                 const [entry] = entries;

@@ -39,6 +39,7 @@ const EbookLandingPage: React.FC = () => {
                     <LazyBackgroundVideo
                         src="/background ebook page.mp4"
                         poster=""
+                        priority={true}
                         className="w-full h-full object-cover opacity-80 absolute inset-0"
                     />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_black_100%)] opacity-60" />

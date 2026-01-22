@@ -125,22 +125,22 @@ const MusicPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-andean-gold selection:text-black overflow-hidden relative">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-andean-gold selection:text-black relative overflow-x-hidden overflow-y-auto">
 
             {/* Ambient Background */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 fixed h-full w-full">
                 <div className={`absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-black to-andean-terracotta/20 transition-colors duration-1000 ${isPlaying ? 'opacity-100' : 'opacity-50'}`} />
                 <div className="absolute top-[-50%] left-[-20%] w-[1000px] h-[1000px] bg-andean-gold/5 rounded-full blur-3xl animate-pulse" />
                 <div className="absolute bottom-[-20%] right-[-20%] w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-3xl" />
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 pt-32 pb-20 px-4 md:px-10 h-screen flex flex-col md:flex-row gap-12 items-center justify-center">
+            <div className="relative z-10 pt-20 md:pt-32 pb-20 px-4 md:px-10 min-h-screen flex flex-col md:flex-row gap-6 md:gap-12 items-center justify-center">
 
                 {/* Left: The "Unboxing" Experience (Vinyl/Art) */}
                 <div className="w-full md:w-1/2 flex flex-col items-center justify-center perspective-1000">
                     <motion.div
-                        className="relative w-72 h-72 md:w-96 md:h-96"
+                        className="relative w-56 h-56 md:w-96 md:h-96"
                         animate={{
                             rotateY: isPlaying ? [0, 360] : 0,
                             scale: isPlaying ? 1.05 : 1
@@ -183,7 +183,7 @@ const MusicPage: React.FC = () => {
                 </div>
 
                 {/* Right: The Player Interface */}
-                <div className="w-full md:w-1/2 max-w-xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+                <div className="w-full md:w-1/2 max-w-xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-5 md:p-8 shadow-2xl">
                     <div className="flex justify-between items-start mb-8">
                         <div>
                             <h2 className="text-gray-400 text-sm uppercase tracking-widest mb-1 font-sans">{t.musicPage.subtitle}</h2>
@@ -214,7 +214,7 @@ const MusicPage: React.FC = () => {
                     </div>
 
                     {/* Controls */}
-                    <div className="flex items-center justify-between gap-6 mb-8">
+                    <div className="flex items-center justify-between gap-6 mb-6 md:mb-8">
                         <div className="flex items-center gap-6 mx-auto">
                             <button onClick={prevSong} className="text-gray-400 hover:text-white transition-colors">
                                 <Rewind size={28} />
