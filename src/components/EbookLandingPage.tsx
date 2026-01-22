@@ -4,6 +4,7 @@ import { BookOpen, Map, Search, Mountain, Crown, Calendar, Users, ShoppingBag, A
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { ebookContent } from '../data/ebookContent';
+import LazyBackgroundVideo from './LazyBackgroundVideo';
 
 const EbookLandingPage: React.FC = () => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const EbookLandingPage: React.FC = () => {
     const icons = [Mountain, Map, Crown, Users, Mountain, Calendar, Users];
 
     return (
-        <div ref={containerRef} className="relative bg-andean-slate text-andean-cream font-sans selection:bg-andean-gold selection:text-andean-slate">
+        <div ref={containerRef} className="relative bg-gradient-to-b from-blue-900 via-slate-950 to-black text-andean-cream font-sans selection:bg-andean-gold selection:text-neutral-950">
 
             {/* Progress Bar */}
             <motion.div
@@ -33,19 +34,15 @@ const EbookLandingPage: React.FC = () => {
             />
 
             {/* Hero Section */}
-            <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+            <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
                 <div className="absolute inset-0 z-0">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover opacity-60 fixed top-0 left-0 h-screen w-screen -z-10"
-                    >
-                        <source src="/background ebook page.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-andean-slate" />
+                    <LazyBackgroundVideo
+                        src="/background ebook page.mp4"
+                        poster=""
+                        className="w-full h-full object-cover opacity-80 absolute inset-0"
+                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_black_100%)] opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
                 </div>
 
                 <motion.div
@@ -111,7 +108,7 @@ const EbookLandingPage: React.FC = () => {
             </div>
 
             {/* Appendices & CTA */}
-            <section className="relative py-32 px-6 bg-gradient-to-b from-andean-slate to-black border-t border-white/5">
+            <section className="relative py-32 px-6 bg-gradient-to-b from-neutral-900 to-neutral-950 border-t border-white/5">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="text-4xl font-serif mb-16 text-center text-andean-gold">{content.appendices.title}</h2>
                     <div className="grid md:grid-cols-3 gap-8 mb-32">
@@ -150,9 +147,9 @@ const EbookLandingPage: React.FC = () => {
 
 // Sub-component for individual chapters to handle useScroll separately if needed, 
 // though here we use simple layout with motion
-const ChapterSection: React.FC<{ chapter: any, index: number, Icon: any }> = ({ chapter, index, Icon }) => {
+const ChapterSection = React.memo(({ chapter, index, Icon }: { chapter: any, index: number, Icon: any }) => {
     return (
-        <section className="min-h-screen sticky top-0 flex items-center justify-center p-6 border-b border-white/5 bg-andean-slate/95 backdrop-blur-sm overflow-hidden">
+        <section className="min-h-screen sticky top-0 flex items-center justify-center p-6 border-b border-white/5 bg-slate-950/95 backdrop-blur-sm overflow-hidden will-change-transform shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
             <div className="absolute right-0 top-0 text-[12rem] md:text-[20rem] font-bold text-white/5 pointer-events-none select-none -translate-y-1/2 translate-x-1/4">
                 {index + 1}
             </div>
@@ -183,9 +180,10 @@ const ChapterSection: React.FC<{ chapter: any, index: number, Icon: any }> = ({ 
                 >
                     <div className="w-full h-full bg-black/40 rounded overflow-hidden relative">
                         <img
-                            src={`https://source.unsplash.com/random/800x1000?cusco,inca,ruins,sig=${index}&q=80&auto=format`}
+                            src={`https://source.unsplash.com/random/800x1000?cusco,inca,ruins,sig=${index}&q=60&auto=format`}
                             alt={chapter.title}
                             loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-700 will-change-transform"
                         />
                         <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
@@ -196,6 +194,6 @@ const ChapterSection: React.FC<{ chapter: any, index: number, Icon: any }> = ({ 
             </motion.div>
         </section>
     );
-};
+});
 
 export default EbookLandingPage;

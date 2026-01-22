@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, FastForward, Rewind, ShoppingBag, Music } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 const songs = [
-    { id: 1, title: "Sunrise over Machu Picchu", duration: "3:45", type: "Ambient" },
-    { id: 2, title: "The Sacred Valley", duration: "4:20", type: "Folk" },
-    { id: 3, title: "Flight of the Condor", duration: "3:12", type: "Orchestral" },
-    { id: 4, title: "Echoes of the Incas", duration: "3:55", type: "Traditional" },
-    { id: 5, title: "Mystic River (Urubamba)", duration: "4:05", type: "Ambient" },
-    { id: 6, title: "Temple of the Sun", duration: "3:30", type: "Ceremonial" },
-    { id: 7, title: "Shadows of the Stone", duration: "2:58", type: "Dark Folk" },
-    { id: 8, title: "Wind in the Andes", duration: "3:40", type: "Flute Solo" },
-    { id: 9, title: "Pachamama's Breath", duration: "4:15", type: "Ambient" },
-    { id: 10, title: "Starry Cusco Night", duration: "3:25", type: "Lullaby" },
+    { id: 1, title: "Sunrise over Machu Picchu", duration: "0:22", type: "Ambient", file: "/music previews/project 1 prev.mp3" },
+    { id: 2, title: "The Sacred Valley", duration: "0:25", type: "Folk", file: "/music previews/project 2 prev.mp3" },
+    { id: 3, title: "Flight of the Condor", duration: "0:24", type: "Orchestral", file: "/music previews/project 3 prev.mp3" },
+    { id: 4, title: "Echoes of the Incas", duration: "0:20", type: "Traditional", file: "/music previews/project 4 prev.mp3" },
+    { id: 5, title: "Mystic River (Urubamba)", duration: "0:22", type: "Ambient", file: "/music previews/project 5 prev.mp3" },
+    { id: 6, title: "Temple of the Sun", duration: "0:22", type: "Ceremonial", file: "/music previews/project 6 prev.mp3" },
+    { id: 7, title: "Shadows of the Stone", duration: "0:22", type: "Dark Folk", file: "/music previews/project 7 prev.mp3" },
+    { id: 8, title: "Wind in the Andes", duration: "0:24", type: "Flute Solo", file: "/music previews/project 8 prev.mp3" },
+    { id: 9, title: "Pachamama's Breath", duration: "0:29", type: "Ambient", file: "/music previews/project 9 prev.mp3" },
+    { id: 10, title: "Starry Cusco Night", duration: "0:22", type: "Lullaby", file: "/music previews/project 10 prev.mp3" },
+    { id: 11, title: "The Incan Road", duration: "0:22", type: "Adventure", file: "/music previews/project 11 prev.mp3" },
+    { id: 12, title: "Return to the Source", duration: "0:22", type: "Finale", file: "/music previews/project 12 prev.mp3" },
 ];
 
 const MusicPage: React.FC = () => {
@@ -22,7 +24,73 @@ const MusicPage: React.FC = () => {
     const navigate = useNavigate();
     const [currentSong, setCurrentSong] = useState<number>(1);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [progress, setProgress] = useState(0);
     const [visualizerBars, setVisualizerBars] = useState<number[]>(new Array(40).fill(10));
+
+    // Audio Reference
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    const activeSong = songs.find(s => s.id === currentSong) || songs[0];
+
+    // Initialize Audio Object
+    useEffect(() => {
+        audioRef.current = new Audio(activeSong.file);
+        audioRef.current.volume = 0.6;
+
+        const handleEnded = () => {
+            setIsPlaying(false);
+            setProgress(0);
+            // Optional: Auto-play next song
+            // nextSong();
+        };
+
+        const handleTimeUpdate = () => {
+            if (audioRef.current) {
+                const percent = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+                setProgress(percent || 0);
+            }
+        };
+
+        audioRef.current.addEventListener('ended', handleEnded);
+        audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current.removeEventListener('ended', handleEnded);
+                audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
+            }
+        };
+    }, []);
+
+    // Handle Song Change
+    useEffect(() => {
+        if (audioRef.current) {
+            const wasPlaying = isPlaying;
+            audioRef.current.pause();
+            audioRef.current.src = activeSong.file;
+            audioRef.current.load(); // Reload audio element
+            setProgress(0);
+
+            if (wasPlaying) {
+                audioRef.current.play().catch(e => console.error("Playback failed:", e));
+            }
+        }
+    }, [currentSong]);
+
+    // Handle Play/Pause Toggle via State
+    useEffect(() => {
+        if (audioRef.current) {
+            if (isPlaying) {
+                audioRef.current.play().catch(e => {
+                    console.error("Playback failed:", e);
+                    setIsPlaying(false);
+                });
+            } else {
+                audioRef.current.pause();
+            }
+        }
+    }, [isPlaying]);
 
     // Simulate audio visualizer
     useEffect(() => {
@@ -37,18 +105,23 @@ const MusicPage: React.FC = () => {
         return () => clearInterval(interval);
     }, [isPlaying]);
 
-    const activeSong = songs.find(s => s.id === currentSong) || songs[0];
-
     const nextSong = () => {
         const currentIndex = songs.findIndex(s => s.id === currentSong);
         const nextIndex = (currentIndex + 1) % songs.length;
         setCurrentSong(songs[nextIndex].id);
+        // If we want auto-play on skip, keep isPlaying true
+        if (!isPlaying) setIsPlaying(true);
     };
 
     const prevSong = () => {
         const currentIndex = songs.findIndex(s => s.id === currentSong);
         const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
         setCurrentSong(songs[prevIndex].id);
+        if (!isPlaying) setIsPlaying(true);
+    };
+
+    const togglePlay = () => {
+        setIsPlaying(!isPlaying);
     };
 
     return (
@@ -73,7 +146,7 @@ const MusicPage: React.FC = () => {
                             scale: isPlaying ? 1.05 : 1
                         }}
                         transition={{
-                            rotateY: { duration: 20, repeat: Infinity, ease: "linear" },
+                            rotateY: { duration: 4, repeat: Infinity, ease: "linear" }, // Faster visual rotation
                             scale: { duration: 0.5 }
                         }}
                     >
@@ -130,12 +203,15 @@ const MusicPage: React.FC = () => {
                         <p className="text-sm text-gray-400">{activeSong.type} Mode</p>
 
                         {/* Progress Bar */}
-                        <div className="mt-6 h-1 w-full bg-gray-800 rounded-full overflow-hidden">
+                        <div className="mt-6 h-1 w-full bg-gray-800 rounded-full overflow-hidden cursor-pointer"
+                            onClick={(e) => {
+                                // Simple seek functionality could be added here
+                            }}>
                             <motion.div
                                 className="h-full bg-andean-gold"
                                 initial={{ width: "0%" }}
-                                animate={{ width: isPlaying ? "100%" : "30%" }}
-                                transition={{ duration: 100, ease: "linear" }}
+                                animate={{ width: `${progress}%` }}
+                                transition={{ duration: 0.1, ease: "linear" }}
                             />
                         </div>
                     </div>
@@ -149,7 +225,7 @@ const MusicPage: React.FC = () => {
 
                             <motion.button
                                 whileTap={{ scale: 0.9 }}
-                                onClick={() => setIsPlaying(!isPlaying)}
+                                onClick={togglePlay}
                                 className="w-20 h-20 rounded-full bg-andean-gold text-black flex items-center justify-center hover:bg-white transition-colors shadow-[0_0_30px_rgba(255,215,0,0.3)]"
                             >
                                 {isPlaying ? <Pause size={32} fill="currentColor" /> : <Play size={32} fill="currentColor" className="ml-1" />}

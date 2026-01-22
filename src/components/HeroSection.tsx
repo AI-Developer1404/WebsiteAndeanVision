@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import heroImage from '../assets/images/hero.png';
+import LazyBackgroundVideo from './LazyBackgroundVideo';
 import { useLanguage } from '../context/LanguageContext';
 
 const HeroSection: React.FC = () => {
@@ -13,29 +14,30 @@ const HeroSection: React.FC = () => {
 
             {/* Cinematic Video Background */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
+                <LazyBackgroundVideo
+                    src="/background.mp4"
                     poster={heroImage}
                     className="h-full w-full object-cover"
-                >
-                    <source src="/background.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                />
                 {/* Readability Overlay (Cinematic Vignette) */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/90" />
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-950/80 via-black/20 to-black/90" />
             </div>
 
             {/* Content */}
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-andean-cream">
+            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1 }}
+                    className="mb-6 h-[1px] w-24 bg-gradient-to-r from-transparent via-andean-gold to-transparent"
+                />
+
                 <motion.h1
                     key={`head-${language}`}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="mb-4 text-4xl font-serif font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl"
+                    className="mb-6 text-5xl font-serif font-bold leading-tight tracking-tight md:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400 drop-shadow-2xl"
                     dangerouslySetInnerHTML={{ __html: t.hero.headline }}
                 />
 
@@ -44,22 +46,20 @@ const HeroSection: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mb-8 max-w-lg text-lg font-sans font-light md:text-xl"
+                    className="mb-10 max-w-2xl text-lg font-light tracking-wide text-gray-300 md:text-xl leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: t.hero.subhead }}
                 />
 
-
-
-                <Link to="/checkout" className="block">
+                <Link to="/checkout" className="group relative inline-flex items-center justify-center">
+                    <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-andean-gold to-yellow-600 opacity-70 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
                     <motion.button
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="rounded-full bg-andean-gold px-8 py-4 text-lg font-bold text-andean-slate shadow-lg transition-colors hover:bg-white"
+                        className="relative rounded-full bg-black px-10 py-5 text-lg font-bold text-white ring-1 ring-white/10 transition-all group-hover:ring-andean-gold/50"
                     >
-                        {t.hero.cta}
+                        <span className="bg-gradient-to-r from-andean-gold to-white bg-clip-text text-transparent group-hover:text-white transition-colors">
+                            {t.hero.cta}
+                        </span>
                     </motion.button>
                 </Link>
             </div>

@@ -57,9 +57,9 @@ export const ebookContent: { en: EbookContent; es: EbookContent } = {
                 description: "How stones weighing 120 tons were moved across mountains and the tragic story of the battle for the city’s crown.",
             },
             {
-                title: "Chapter 6: The Spiritual GPS – The Ceque Lines",
-                subtitle: "The Living Calendar",
-                description: "Understanding the 41 invisible lines radiating from Cusco that dictated time, agriculture, and sacred rituals.",
+                title: "Chapter 6: Ollantaytambo – The Living Blueprint",
+                subtitle: "The City That Never Died",
+                description: "Journey to the only place where the Inca grid remains intact and inhabited. A living, breathing time capsule where the past isn't studied—it's lived.",
             },
             {
                 title: "Chapter 7: The Living Empire",
@@ -123,9 +123,9 @@ export const ebookContent: { en: EbookContent; es: EbookContent } = {
                 description: "Cómo piedras de 120 toneladas fueron movidas a través de montañas y la trágica historia de la batalla por la corona de la ciudad.",
             },
             {
-                title: "Capítulo 6: El GPS Espiritual – Las Líneas Ceque",
-                subtitle: "El Calendario Viviente",
-                description: "Entendiendo las 41 líneas invisibles que irradiaban desde Cusco y dictaban el tiempo, la agricultura y los rituales sagrados.",
+                title: "Capítulo 6: Ollantaytambo – El Plano Viviente",
+                subtitle: "La Ciudad Que Nunca Murió",
+                description: "Viaja al único lugar donde la cuadrícula inca permanece intacta y habitada. Una cápsula del tiempo viva donde el pasado no se estudia, se vive.",
             },
             {
                 title: "Capítulo 7: El Imperio Viviente",

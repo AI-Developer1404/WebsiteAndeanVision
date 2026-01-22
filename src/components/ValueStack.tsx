@@ -1,56 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Music, BookOpen, ChefHat } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
-
+import { Music, BookOpen, Palette, CheckCircle2 } from 'lucide-react';
 const ValueStack: React.FC = () => {
-    const { t } = useLanguage();
 
     const items = [
         {
-            icon: <Music className="w-8 h-8 text-andean-terracotta" />,
-            title: t.bundle.masterAlbum.title,
-            description: t.bundle.masterAlbum.desc,
+            icon: <Music className="w-8 h-8 text-andean-gold" />,
+            title: "Original Syllabus Album",
+            subtitle: "12 High-Fidelity Tracks",
+            description: "A sonic journey through the Andes. Includes MP3 & FLAC formats.",
             delay: 0.1
         },
         {
-            icon: <BookOpen className="w-8 h-8 text-andean-terracotta" />,
-            title: t.bundle.instrumentGuide.title,
-            description: t.bundle.instrumentGuide.desc,
+            icon: <BookOpen className="w-8 h-8 text-andean-gold" />,
+            title: "The Andean Scroll",
+            subtitle: "Interactive Ebook",
+            description: "Deep dive into the history, culture, and stories of the Incas.",
             delay: 0.2
         },
         {
-            icon: <ChefHat className="w-8 h-8 text-andean-terracotta" />,
-            title: t.bundle.cookbook.title,
-            description: (
-                <div className="space-y-2">
-                    <p>{t.bundle.cookbook.desc}</p>
-                    <ul className="text-xs md:text-sm font-medium text-andean-slate/70 list-disc ml-4 space-y-1">
-                        {Object.values(t.recipes).map((recipe, i) => (
-                            <li key={i}>{recipe}</li>
-                        ))}
-                    </ul>
-                </div>
-            ),
+            icon: <Palette className="w-8 h-8 text-andean-gold" />,
+            title: "Cinematic Art Collection",
+            subtitle: "6 High-Res Prints",
+            description: "Curated photography from Cusco, ready for large-format printing.",
             delay: 0.3
         }
     ];
 
     return (
-        <section className="relative py-24 px-4 overflow-hidden bg-andean-cream/30">
+        <section className="relative py-32 px-4 overflow-hidden bg-transparent">
             {/* Background Decor */}
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-transparent to-transparent opacity-50" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent opacity-50" />
 
-            <div className="relative max-w-5xl mx-auto">
+            <div className="relative max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                 >
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-andean-slate mb-4 tracking-tight">{t.bundle.title}</h2>
-                    <div className="h-1.5 w-24 bg-andean-gold/50 mx-auto rounded-full" />
+                    <span className="text-andean-gold text-sm uppercase tracking-[0.3em] font-mono">The Complete Package</span>
+                    <h2 className="mt-4 text-4xl md:text-6xl font-serif font-bold text-white mb-6">The Digital Souvenir</h2>
+                    <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                        Everything you need to bring the magic of the Andes into your home. One simple download.
+                    </p>
                 </motion.div>
 
                 <div className="grid gap-8 md:grid-cols-3">
@@ -61,20 +55,23 @@ const ValueStack: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: item.delay }}
-                            whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                            className="group relative p-8 rounded-3xl bg-white/60 backdrop-blur-md border border-white/40 shadow-xl hover:shadow-2xl hover:bg-white/80 transition-all duration-300"
+                            whileHover={{ y: -8 }}
+                            className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-andean-gold/30 transition-all duration-500"
                         >
-                            {/* Hover Gradient Border Effect */}
-                            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-andean-gold/0 to-andean-terracotta/0 opacity-0 group-hover:from-andean-gold/10 group-hover:to-andean-terracotta/10 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+                            <div className="mb-6 w-16 h-16 rounded-2xl bg-neutral-900 flex items-center justify-center group-hover:scale-110 group-hover:text-white transition-all duration-300 border border-white/5 group-hover:border-andean-gold/50 shadow-2xl">
+                                {item.icon}
+                            </div>
 
-                            <div className="relative z-10 flex flex-col items-center text-center h-full">
-                                <div className="mb-6 p-4 rounded-2xl bg-white shadow-sm ring-1 ring-black/5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                                    {item.icon}
-                                </div>
-                                <h3 className="text-2xl font-bold text-andean-slate mb-3">{item.title}</h3>
-                                <div className="text-andean-slate/70 leading-relaxed text-sm md:text-base">
-                                    {item.description}
-                                </div>
+                            <h3 className="text-xl font-serif font-bold text-white mb-1 group-hover:text-andean-gold transition-colors">{item.title}</h3>
+                            <p className="text-xs uppercase tracking-widest text-gray-500 mb-4 font-mono">{item.subtitle}</p>
+
+                            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                                {item.description}
+                            </p>
+
+                            <div className="flex items-center gap-2 text-xs text-andean-gold/70">
+                                <CheckCircle2 size={14} />
+                                <span>Included</span>
                             </div>
                         </motion.div>
                     ))}

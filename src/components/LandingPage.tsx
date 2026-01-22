@@ -17,7 +17,7 @@ const LandingPage: React.FC = () => {
     // For now, let's just move the big blocks here.
 
     return (
-        <main className="min-h-screen bg-andean-cream text-andean-slate font-sans selection:bg-andean-terracotta selection:text-white">
+        <main className="min-h-screen bg-gradient-to-b from-blue-900 via-slate-950 to-black text-white font-sans selection:bg-andean-gold selection:text-black">
             <HeroSection />
 
             {/* Audio Hook Section */}

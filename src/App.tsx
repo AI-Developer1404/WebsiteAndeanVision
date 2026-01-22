@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import LandingPage from './components/LandingPage';
-import CheckoutPage from './components/CheckoutPage';
-import DownloadHub from './components/DownloadHub';
-import EbookViewer from './components/EbookViewer';
-import { LanguageProvider } from './context/LanguageContext';
+import LoadingSpinner from './components/LoadingSpinner';
 
-import MusicPage from './components/MusicPage';
-import EbookLandingPage from './components/EbookLandingPage';
-import ArtPage from './components/ArtPage';
-import AboutPage from './components/AboutPage';
+const LandingPage = React.lazy(() => import('./components/LandingPage'));
+const CheckoutPage = React.lazy(() => import('./components/CheckoutPage'));
+const DownloadHub = React.lazy(() => import('./components/DownloadHub'));
+const EbookViewer = React.lazy(() => import('./components/EbookViewer'));
+const MusicPage = React.lazy(() => import('./components/MusicPage'));
+const EbookLandingPage = React.lazy(() => import('./components/EbookLandingPage'));
+const ArtPage = React.lazy(() => import('./components/ArtPage'));
+const AboutPage = React.lazy(() => import('./components/AboutPage'));
+import { LanguageProvider } from './context/LanguageContext';
 
 import PremiumNavbar from './components/PremiumNavbar';
 
@@ -38,7 +39,9 @@ const App: React.FC = () => {
     <LanguageProvider>
       <Router>
         <PremiumNavbar />
-        <AnimatedRoutes />
+        <React.Suspense fallback={<LoadingSpinner />}>
+          <AnimatedRoutes />
+        </React.Suspense>
       </Router>
     </LanguageProvider>
   );

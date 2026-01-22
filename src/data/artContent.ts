@@ -9,31 +9,45 @@ export const artContent = {
         gallery: [
             {
                 id: 1,
-                title: "The Golden Summit",
-                description: "Sunrise hitting the peaks of Huayna Picchu, rendered in abstract gold leaf styles.",
-                orientation: "portrait",
-                image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1000&auto=format&fit=crop"
+                title: "The Imperial Square",
+                description: "The Plaza de Armas, where colonial balconies rest upon the indestructible Inca foundations of a former palace.",
+                orientation: "landscape",
+                image: "/photo-assets/plaza de armas.jpg"
             },
             {
                 id: 2,
-                title: "Textiles of Time",
-                description: "A macro interpretation of traditional Quechua weaving patterns.",
-                orientation: "square",
-                image: "https://images.unsplash.com/photo-1528659526776-659f77e68ad7?q=80&w=1000&auto=format&fit=crop"
+                title: "The Rainbow Birthplace",
+                description: "The terraces of Chinchero, where massive stones were fitted so precisely that no mortar was needed.",
+                orientation: "portrait",
+                image: "/photo-assets/chinchero 1.jpg"
             },
             {
                 id: 3,
-                title: "Mist over Urubamba",
-                description: "Ethereal fog rolling through the valley, capturing the silence of the morning.",
-                orientation: "landscape",
-                image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1200&auto=format&fit=crop"
+                title: "Agricultural Laboratory",
+                description: "The circles of Moray, an ancient research station where microclimates allowed the testing of crops from all over the empire.",
+                orientation: "square",
+                image: "/photo-assets/moray.jpg"
             },
             {
                 id: 4,
-                title: "Inca Geometry",
-                description: "Sharp shadows and perfect stones. The precision of the ancients.",
+                title: "The Fortress of Ollantaytambo",
+                description: "The site of a rare victory against the Spanish, featuring cyclopean stones dragged for kilometers across the river.",
+                orientation: "landscape",
+                image: "/photo-assets/ollantaytambo.jpg"
+            },
+            {
+                id: 5,
+                title: "Ashlar Precision",
+                description: "A close-up of the famous \"dancing stones\" that lock together to withstand centuries of earthquakes.",
                 orientation: "portrait",
-                image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?q=80&w=1000&auto=format&fit=crop"
+                image: "/photo-assets/stenen muur.jpg"
+            },
+            {
+                id: 6,
+                title: "Highland Weave",
+                description: "A perspective on the sacred landscapes that inspire the intricate patterns of Andean textiles.",
+                orientation: "landscape",
+                image: "/photo-assets/chinchero 2.jpg"
             }
         ],
         feature: {
@@ -49,7 +63,7 @@ export const artContent = {
         pricing: {
             title: "The Complete Collection",
             price: "$15",
-            includes: "All 12 Artworks + Premium Printing Guide (Paper Recommendations & Framing Tips)",
+            includes: "All 6 Artworks + Premium Printing Guide (Paper Recommendations & Framing Tips)",
             button: "Acquire Collection"
         }
     },
@@ -63,31 +77,45 @@ export const artContent = {
         gallery: [
             {
                 id: 1,
-                title: "La Cumbre Dorada",
-                description: "El amanecer golpeando los picos de Huayna Picchu, renderizado en estilos abstractos de pan de oro.",
-                orientation: "portrait",
-                image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1000&auto=format&fit=crop"
+                title: "La Plaza Imperial",
+                description: "La Plaza de Armas, donde los balcones coloniales descansan sobre los cimientos incaicos indestructibles de un antiguo palacio.",
+                orientation: "landscape",
+                image: "/photo-assets/plaza de armas.jpg"
             },
             {
                 id: 2,
-                title: "Textiles del Tiempo",
-                description: "Una interpretación macro de los patrones de tejido tradicional Quechua.",
-                orientation: "square",
-                image: "https://images.unsplash.com/photo-1528659526776-659f77e68ad7?q=80&w=1000&auto=format&fit=crop"
+                title: "La Cuna del Arcoíris",
+                description: "Las terrazas de Chinchero, donde enormes piedras fueron encajadas con tal precisión que no se necesitó mortero.",
+                orientation: "portrait",
+                image: "/photo-assets/chinchero 1.jpg"
             },
             {
                 id: 3,
-                title: "Niebla sobre Urubamba",
-                description: "Niebla etérea rodando por el valle, capturando el silencio de la mañana.",
-                orientation: "landscape",
-                image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1200&auto=format&fit=crop"
+                title: "Laboratorio Agrícola",
+                description: "Los círculos de Moray, una antigua estación de investigación donde los microclimas permitían probar cultivos de todo el imperio.",
+                orientation: "square",
+                image: "/photo-assets/moray.jpg"
             },
             {
                 id: 4,
-                title: "Geometría Inca",
-                description: "Sombras nítidas y piedras perfectas. La precisión de los antiguos.",
+                title: "La Fortaleza de Ollantaytambo",
+                description: "El sitio de una rara victoria contra los españoles, con piedras ciclópeas arrastradas por kilómetros a través del río.",
+                orientation: "landscape",
+                image: "/photo-assets/ollantaytambo.jpg"
+            },
+            {
+                id: 5,
+                title: "Precisión Ashlar",
+                description: "Un primer plano de las famosas \"piedras danzantes\" que se entrelazan para resistir siglos de terremotos.",
                 orientation: "portrait",
-                image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?q=80&w=1000&auto=format&fit=crop"
+                image: "/photo-assets/stenen muur.jpg"
+            },
+            {
+                id: 6,
+                title: "Tejido Andino",
+                description: "Una perspectiva de los paisajes sagrados que inspiran los intrincados patrones de los textiles andinos.",
+                orientation: "landscape",
+                image: "/photo-assets/chinchero 2.jpg"
             }
         ],
         feature: {
@@ -103,7 +131,7 @@ export const artContent = {
         pricing: {
             title: "La Colección Completa",
             price: "$15",
-            includes: "Las 12 Obras de Arte + Guía de Impresión Premium (Recomendaciones de Papel y Consejos de Enmarcado)",
+            includes: "Las 6 Obras de Arte + Guía de Impresión Premium (Recomendaciones de Papel y Consejos de Enmarcado)",
             button: "Adquirir Colección"
         }
     }

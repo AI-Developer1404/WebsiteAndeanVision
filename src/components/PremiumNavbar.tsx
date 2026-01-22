@@ -42,16 +42,20 @@ const PremiumNavbar: React.FC = () => {
             {/* Floating Desktop & Mobile Fixed Bar */}
             <motion.nav
                 initial={{ y: -100 }}
-                animate={{ y: 0 }}
+                animate={{ y: 0, paddingTop: isScrolled ? '1rem' : '2rem' }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none transition-all duration-500 ${isScrolled ? 'pt-4' : 'pt-8'}`}
+                className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none"
             >
-                <div
-                    className={`
-                        pointer-events-auto relative flex items-center justify-between px-6 py-3 rounded-full 
-                        backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500
-                        ${isScrolled ? 'bg-black/80 w-[95%] md:w-[600px] gap-4' : 'bg-black/40 w-[90%] md:w-[700px] gap-8'}
-                    `}
+                <motion.div
+                    layout
+                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                    style={{
+                        width: isScrolled ? 600 : 700,
+                        maxWidth: '95%',
+                        backgroundColor: isScrolled ? 'rgba(0,0,0,0.8)' : 'rgba(0,0,0,0.4)',
+                        gap: isScrolled ? '1rem' : '2rem'
+                    }}
+                    className="pointer-events-auto relative flex items-center justify-between px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 shadow-2xl"
                 >
 
                     {/* Logo / Brand */}
@@ -117,7 +121,7 @@ const PremiumNavbar: React.FC = () => {
                             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
                         </button>
                     </div>
-                </div>
+                </motion.div>
             </motion.nav>
 
             {/* Mobile Fullscreen Menu */}
