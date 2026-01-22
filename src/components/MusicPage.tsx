@@ -125,10 +125,10 @@ const MusicPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-andean-gold selection:text-black relative overflow-x-hidden overflow-y-auto">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-andean-gold selection:text-black relative overflow-x-hidden">
 
             {/* Ambient Background */}
-            <div className="absolute inset-0 z-0 fixed h-full w-full">
+            <div className="fixed inset-0 z-0 h-full w-full pointer-events-none">
                 <div className={`absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-black to-andean-terracotta/20 transition-colors duration-1000 ${isPlaying ? 'opacity-100' : 'opacity-50'}`} />
                 <div className="absolute top-[-50%] left-[-20%] w-[1000px] h-[1000px] bg-andean-gold/5 rounded-full blur-3xl animate-pulse" />
                 <div className="absolute bottom-[-20%] right-[-20%] w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-3xl" />
@@ -235,7 +235,7 @@ const MusicPage: React.FC = () => {
                     </div>
 
                     {/* Tracklist Preview (Scrollable) */}
-                    <div className="h-48 overflow-y-auto pr-2 space-y-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                    <div className="h-auto md:h-48 overflow-y-visible md:overflow-y-auto pr-0 md:pr-2 space-y-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
                         {songs.map((song) => (
                             <div
                                 key={song.id}
