@@ -177,7 +177,7 @@ const MusicPage: React.FC = () => {
                             className="flex items-center gap-3 px-8 py-4 bg-andean-gold text-black rounded-full font-bold text-lg shadow-[0_0_20px_rgba(183,121,31,0.3)] hover:scale-105 hover:bg-white transition-all transform hover:shadow-[0_0_30px_rgba(183,121,31,0.5)]"
                         >
                             <ShoppingBag size={20} />
-                            <span>Buy Album 8€</span>
+                            <span>{t.musicPage.buyButton}</span>
                         </button>
                     </div>
                 </div>
@@ -196,11 +196,11 @@ const MusicPage: React.FC = () => {
                     {/* Current Track Display */}
                     <div className="mb-8 p-6 bg-black/40 rounded-2xl border border-white/5">
                         <div className="flex justify-between items-center mb-2">
-                            <span className="text-xs font-mono text-andean-gold animate-pulse">{isPlaying ? 'NOW PLAYING' : 'PAUSED'}</span>
+                            <span className="text-xs font-mono text-andean-gold animate-pulse">{isPlaying ? t.musicPage.nowPlaying : t.musicPage.paused}</span>
                             <span className="text-xs font-mono text-gray-500">{activeSong.duration}</span>
                         </div>
                         <h3 className="text-2xl font-bold mb-1">{activeSong.title}</h3>
-                        <p className="text-sm text-gray-400">{activeSong.type} Mode</p>
+                        <p className="text-sm text-gray-400">{t.musicPage.types[activeSong.type as keyof typeof t.musicPage.types]} {t.musicPage.mode}</p>
 
                         {/* Progress Bar */}
                         <div className="mt-6 h-1 w-full bg-gray-800 rounded-full overflow-hidden cursor-pointer">

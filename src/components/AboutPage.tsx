@@ -4,45 +4,10 @@ import { useLanguage } from '../context/LanguageContext';
 import { Mail, Send, MapPin, Instagram } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
-    const { language } = useLanguage();
+    // const { language } = useLanguage(); // Removed unused language
 
     // Ideally this would come from a data file too, but for speed keeping it internal for now
-    const text = {
-        en: {
-            title: "The Creator",
-            subtitle: "An invisible thread connecting past and future.",
-            intro: "Born in the shadow of the Misti volcano, raised among the imperial stones of Cusco. I am a child of two worlds.",
-            philosophy: "Culture is not a relic to be kept in a museum. It is a living, breathing entity. My work is not about preserving the past, but projecting it into the future.",
-            anonymous: "The face does not matter. Only the vision remains.",
-            contact: {
-                title: "Connect",
-                subtitle: "Have a vision to share?",
-                name: "Name",
-                email: "Email",
-                message: "Message",
-                send: "Send Message",
-                success: "Message sent into the ether."
-            }
-        },
-        es: {
-            title: "El Creador",
-            subtitle: "Un hilo invisible conectando pasado y futuro.",
-            intro: "Nacido a la sombra del volcán Misti, criado entre las piedras imperiales de Cusco. Soy hijo de dos mundos.",
-            philosophy: "La cultura no es una reliquia para guardar en un museo. Es una entidad viva y constante. Mi trabajo no trata de preservar el pasado, sino de proyectarlo al futuro.",
-            anonymous: "El rostro no importa. Solo la visión permanece.",
-            contact: {
-                title: "Conectar",
-                subtitle: "¿Tienes una visión para compartir?",
-                name: "Nombre",
-                email: "Correo",
-                message: "Mensaje",
-                send: "Enviar Mensaje",
-                success: "Mensaje enviado al éter."
-            }
-        }
-    };
-
-    const t = text[language];
+    const { t } = useLanguage();
     const { scrollY } = useScroll();
 
     const y1 = useTransform(scrollY, [0, 500], [0, 200]);
@@ -88,8 +53,8 @@ const AboutPage: React.FC = () => {
                         transition={{ duration: 1, delay: 0.5 }}
                         className="w-[1px] bg-gradient-to-b from-transparent via-andean-gold to-transparent mx-auto mb-8"
                     />
-                    <h1 className="text-5xl md:text-8xl font-serif mb-6 tracking-tight text-white drop-shadow-2xl">{t.title}</h1>
-                    <p className="text-gray-400 text-lg uppercase tracking-[0.3em] font-light">{t.subtitle}</p>
+                    <h1 className="text-5xl md:text-8xl font-serif mb-6 tracking-tight text-white drop-shadow-2xl">{t.about.title}</h1>
+                    <p className="text-gray-400 text-lg uppercase tracking-[0.3em] font-light">{t.about.subtitle}</p>
                 </motion.div>
             </section>
 
@@ -125,7 +90,7 @@ const AboutPage: React.FC = () => {
                             <span className="text-andean-gold text-xs font-mono mb-4 block">01 / GENESIS</span>
                             <h2 className="text-4xl font-serif text-white mb-8">Arequipa</h2>
                             <p className="text-xl text-gray-400 leading-relaxed font-light border-l border-andean-gold/30 pl-6 italic">
-                                "{t.intro}"
+                                "{t.about.intro}"
                             </p>
                         </motion.div>
                     </div>
@@ -155,7 +120,7 @@ const AboutPage: React.FC = () => {
                             <span className="text-andean-gold text-xs font-mono mb-4 block">02 / VISION</span>
                             <h2 className="text-4xl font-serif text-white mb-8">Cusco</h2>
                             <p className="text-xl text-gray-400 leading-relaxed font-light border-r border-andean-gold/30 pr-6 italic ml-auto max-w-md">
-                                "{t.philosophy}"
+                                "{t.about.philosophy}"
                             </p>
                         </motion.div>
                     </div>
@@ -197,8 +162,8 @@ const AboutPage: React.FC = () => {
 
                         {/* Contact Info */}
                         <div>
-                            <h2 className="text-4xl font-serif mb-4 text-white">{t.contact.title}</h2>
-                            <p className="text-gray-400 mb-12 font-light">{t.contact.subtitle}</p>
+                            <h2 className="text-4xl font-serif mb-4 text-white">{t.about.contact.title}</h2>
+                            <p className="text-gray-400 mb-12 font-light">{t.about.contact.subtitle}</p>
 
                             <div className="space-y-8">
                                 <div className="flex items-center gap-4 text-gray-300 hover:text-andean-gold transition-colors cursor-pointer">
@@ -229,19 +194,18 @@ const AboutPage: React.FC = () => {
                                     <div className="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mb-6">
                                         <Send size={24} />
                                     </div>
-                                    <h3 className="text-xl font-serif text-white mb-2">Message Sent</h3>
-                                    <p className="text-gray-400">{t.contact.success}</p>
+                                    <h3 className="text-xl font-serif text-white mb-2">{t.about.contact.successTitle}</h3>
+                                    <p className="text-gray-400">{t.about.contact.success}</p>
                                     <button
                                         onClick={() => setFormState('idle')}
-                                        className="mt-8 text-xs text-gray-500 hover:text-white underline"
                                     >
-                                        Send another
+                                        {t.about.contact.sendAnother}
                                     </button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div>
-                                        <label htmlFor="name" className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t.contact.name}</label>
+                                        <label htmlFor="name" className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t.about.contact.name}</label>
                                         <input
                                             type="text"
                                             id="name"
@@ -250,7 +214,7 @@ const AboutPage: React.FC = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="email" className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t.contact.email}</label>
+                                        <label htmlFor="email" className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t.about.contact.email}</label>
                                         <input
                                             type="email"
                                             id="email"
@@ -259,7 +223,7 @@ const AboutPage: React.FC = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="message" className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t.contact.message}</label>
+                                        <label htmlFor="message" className="block text-xs uppercase tracking-widest text-gray-500 mb-2">{t.about.contact.message}</label>
                                         <textarea
                                             id="message"
                                             required
@@ -274,7 +238,7 @@ const AboutPage: React.FC = () => {
                                     >
                                         {formState === 'submitting' ? '...' : (
                                             <>
-                                                <span>{t.contact.send}</span>
+                                                <span>{t.about.contact.send}</span>
                                                 <Send size={16} />
                                             </>
                                         )}

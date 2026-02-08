@@ -1,28 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Music, BookOpen, Palette, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+
 const ValueStack: React.FC = () => {
+    const { t } = useLanguage();
 
     const items = [
         {
             icon: <Music className="w-8 h-8 text-andean-gold" />,
-            title: "Original Syllabus Album",
-            subtitle: "12 High-Fidelity Tracks",
-            description: "A sonic journey through the Andes. Includes MP3 & FLAC formats.",
+            title: t.valueStack.items.music.title,
+            subtitle: t.valueStack.items.music.subtitle,
+            description: t.valueStack.items.music.description,
             delay: 0.1
         },
         {
             icon: <BookOpen className="w-8 h-8 text-andean-gold" />,
-            title: "The Andean Scroll",
-            subtitle: "Interactive Ebook",
-            description: "Deep dive into the history, culture, and stories of the Incas.",
+            title: t.valueStack.items.book.title,
+            subtitle: t.valueStack.items.book.subtitle,
+            description: t.valueStack.items.book.description,
             delay: 0.2
         },
         {
             icon: <Palette className="w-8 h-8 text-andean-gold" />,
-            title: "Cinematic Art Collection",
-            subtitle: "6 High-Res Prints",
-            description: "Curated photography from Cusco, ready for large-format printing.",
+            title: t.valueStack.items.art.title,
+            subtitle: t.valueStack.items.art.subtitle,
+            description: t.valueStack.items.art.description,
             delay: 0.3
         }
     ];
@@ -40,10 +43,10 @@ const ValueStack: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-20"
                 >
-                    <span className="text-andean-gold text-sm uppercase tracking-[0.3em] font-mono">The Complete Package</span>
-                    <h2 className="mt-4 text-4xl md:text-6xl font-serif font-bold text-white mb-6">The Digital Souvenir</h2>
+                    <span className="text-andean-gold text-sm uppercase tracking-[0.3em] font-mono">{t.valueStack.label}</span>
+                    <h2 className="mt-4 text-4xl md:text-6xl font-serif font-bold text-white mb-6">{t.valueStack.title}</h2>
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light leading-relaxed">
-                        Everything you need to bring the magic of the Andes into your home. One simple download.
+                        {t.valueStack.description}
                     </p>
                 </motion.div>
 
@@ -71,7 +74,7 @@ const ValueStack: React.FC = () => {
 
                             <div className="flex items-center gap-2 text-xs text-andean-gold/70">
                                 <CheckCircle2 size={14} />
-                                <span>Included</span>
+                                <span>{t.valueStack.included}</span>
                             </div>
                         </motion.div>
                     ))}

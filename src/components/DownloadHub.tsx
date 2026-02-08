@@ -13,7 +13,7 @@ import { useLanguage } from '../context/LanguageContext';
 import confetti from 'canvas-confetti';
 
 const DownloadHub: React.FC = () => {
-    const { t, language } = useLanguage();
+    const { t } = useLanguage();
 
     useEffect(() => {
         // Trigger confetti on mount
@@ -43,7 +43,7 @@ const DownloadHub: React.FC = () => {
         {
             icon: <Download className="w-10 h-10 text-andean-gold" />,
             title: t.download.cards.album.title,
-            description: "High Quality MP3",
+            description: t.download.cards.album.description,
             actions: [
                 {
                     label: t.download.cards.album.button,
@@ -56,26 +56,26 @@ const DownloadHub: React.FC = () => {
         },
         {
             icon: <BookOpen className="w-10 h-10 text-andean-terracotta" />,
-            title: language === 'es' ? 'Guía y Recetario' : 'Guidebook & Cookbook',
-            description: "Interactive Experience & Print Ready",
+            title: t.download.cards.guide.title,
+            description: t.download.cards.guide.description,
             actions: [
                 {
-                    label: "Read Guidebook (English)",
+                    label: t.download.cards.guide.actions.readEn,
                     primary: true,
                     onClick: () => window.location.href = '/ebook?lang=en'
                 },
                 {
-                    label: "Leer la Guía (Español)",
+                    label: t.download.cards.guide.actions.readEs,
                     primary: false,
                     onClick: () => window.location.href = '/ebook?lang=es'
                 },
                 {
-                    label: "Download PDF (EN)",
+                    label: t.download.cards.guide.actions.dlEn,
                     primary: false,
                     onClick: () => window.open('/ebook-en.pdf', '_blank')
                 },
                 {
-                    label: "Descargar PDF (ES)",
+                    label: t.download.cards.guide.actions.dlEs,
                     primary: false,
                     onClick: () => window.open('/ebook-es.pdf', '_blank')
                 }

@@ -48,18 +48,18 @@ const CheckoutPage: React.FC = () => {
                 {/* Item List */}
                 <div className="bg-white/5 rounded-xl p-6 mb-6">
                     <h3 className="font-bold text-lg mb-2">{product}</h3>
-                    <p className="text-sm text-white/60 mb-4">{productId === 'bundle' ? t.checkout.includes : 'Digital Download'}</p>
+                    <p className="text-sm text-white/60 mb-4">{productId === 'bundle' ? t.checkout.includes : t.checkout.digitalDownload}</p>
                     <div className="flex justify-between items-center text-xl font-bold text-white">
                         <span>{t.checkout.total}</span>
                         <span>{formattedPrice}</span>
                     </div>
                     {/* Price Breakdown Details (Simplified) */}
                     <div className="mt-2 text-xs text-white/40 flex justify-between">
-                        <span>Subtotal</span>
+                        <span>{t.checkout.subtotal}</span>
                         <span>{formattedPrice}</span>
                     </div>
                     <div className="text-xs text-white/40 flex justify-between">
-                        <span>Tax</span>
+                        <span>{t.checkout.tax}</span>
                         <span>0.00€</span>
                     </div>
                 </div>

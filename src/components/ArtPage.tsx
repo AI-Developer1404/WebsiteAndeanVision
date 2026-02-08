@@ -6,7 +6,7 @@ import { Palette, Printer, ShoppingBag, Maximize2, ArrowRight, ChevronLeft, Chev
 import { useNavigate } from 'react-router-dom';
 
 const ArtPage: React.FC = () => {
-    const { language } = useLanguage();
+    const { language, t } = useLanguage();
     const content = artContent[language];
     const navigate = useNavigate();
     const { scrollY } = useScroll();
@@ -121,7 +121,7 @@ const ArtPage: React.FC = () => {
                     className="absolute bottom-12 right-12 text-right hidden md:block"
                 >
                     <div className="text-6xl font-serif text-white/5">001</div>
-                    <div className="text-xs font-mono text-andean-gold/50 tracking-widest">COLLECTION / 2025</div>
+                    <div className="text-xs font-mono text-andean-gold/50 tracking-widest">{t.art.collection}</div>
                 </motion.div>
             </section>
 
@@ -142,7 +142,7 @@ const ArtPage: React.FC = () => {
                                     transition={{ duration: 0.5 }}
                                 >
                                     <div className="font-mono text-andean-gold text-xs mb-4">
-                                        ARTWORK 0{currentItem.id} / 0{content.gallery.length}
+                                        {t.art.artwork} 0{currentItem.id} / 0{content.gallery.length}
                                     </div>
                                     <h3 className="text-5xl md:text-6xl font-serif mb-6 leading-none">{currentItem.title}</h3>
                                     <p className="text-gray-400 text-lg font-light leading-relaxed mb-8">{currentItem.description}</p>
@@ -215,7 +215,7 @@ const ArtPage: React.FC = () => {
 
                         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                             <div className="text-right hidden md:block">
-                                <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">Total Value</p>
+                                <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">{t.art.totalValue}</p>
                                 <p className="text-gray-400 line-through decoration-andean-gold decoration-2">$60.00+</p>
                             </div>
 
@@ -231,8 +231,8 @@ const ArtPage: React.FC = () => {
                             </button>
 
                             <div className="text-left hidden md:block">
-                                <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">File Format</p>
-                                <p className="text-white">TIFF / JPEG / PDF</p>
+                                <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">{t.art.fileFormat}</p>
+                                <p className="text-white">{t.art.formats}</p>
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,13 @@ export const translations = {
     en: {
         nav: {
             language: "Language",
+            home: "Home",
+            music: "Music",
+            book: "Book",
+            art: "Art",
+            creator: "Creator",
+            bundle: "Bundle 12€",
+            buyBundle: "Buy Bundle - $12" // Keeping $ as in design or changing to €? Navbar uses $ in mobile menu. I'll normalize to € if possible or stick to what was there. Navbar had 12€ in desktop button, $12 in mobile. I will use 12€ for consistency.
         },
         hero: {
             headline: "Take the Spirit of<br />the Andes Home.",
@@ -23,7 +30,21 @@ export const translations = {
             albumTitle: "Andean Echoes",
             subtitle: "Original Soundtrack Collection",
             buyButton: "Buy Album 8€",
-            nowPlaying: "Now Playing Preview"
+            nowPlaying: "NOW PLAYING",
+            paused: "PAUSED",
+            mode: "Mode",
+            types: {
+                Ambient: "Ambient",
+                Folk: "Folk",
+                Orchestral: "Orchestral",
+                Traditional: "Traditional",
+                Ceremonial: "Ceremonial",
+                "Dark Folk": "Dark Folk",
+                "Flute Solo": "Flute Solo",
+                Lullaby: "Lullaby",
+                Adventure: "Adventure",
+                Finale: "Finale"
+            }
         },
         bundle: {
             title: "Included in your Digital Souvenir Package:",
@@ -48,22 +69,73 @@ export const translations = {
             chicharron: "Chicharrón Cusqueño"
         },
         reviews: {
+            title: "Community Stories",
             sarah: "The perfect music to remember our trip to Machu Picchu. It takes us back every time.",
             carlos: "Incredible sound quality. I feel like I am back in the plaza in Cusco.",
             elena: "A beautiful collection. The cookbook was a wonderful surprise!",
             mark: "The best souvenir I bought. Beats a keychain any day."
         },
+        valueStack: {
+            label: "The Complete Package",
+            title: "The Digital Souvenir",
+            description: "Everything you need to bring the magic of the Andes into your home. One simple download.",
+            included: "Included",
+            items: {
+                music: {
+                    title: "Original Syllabus Album",
+                    subtitle: "12 High-Fidelity Tracks",
+                    description: "A sonic journey through the Andes. Includes MP3 & FLAC formats."
+                },
+                book: {
+                    title: "The Andean Scroll",
+                    subtitle: "Interactive Ebook",
+                    description: "Deep dive into the history, culture, and stories of the Incas."
+                },
+                art: {
+                    title: "Cinematic Art Collection",
+                    subtitle: "6 High-Res Prints",
+                    description: "Curated photography from Cusco, ready for large-format printing."
+                }
+            }
+        },
         checkout: {
             header: "Complete your Purchase",
             total: "Total",
+            subtotal: "Subtotal",
+            tax: "Tax",
+            digitalBundle: "Andean Souvenir Bundle",
+            digitalDownload: "Digital Download",
+            includes: "Includes: Album, PDF Guide, Cookbook",
             emailLabel: "Email Address",
             button: "Pay Securely",
             secure: "Secure Payment",
             instant: "Instant Download",
-            guarantee: "Money Back Guarantee",
-            digitalBundle: "Andean Souvenir Bundle",
-            includes: "Includes: Album, PDF Guide, Cookbook"
-
+            guarantee: "Money Back Guarantee"
+        },
+        about: {
+            title: "The Creator",
+            subtitle: "An invisible thread connecting past and future.",
+            intro: "Born in the shadow of the Misti volcano, raised among the imperial stones of Cusco. I am a child of two worlds.",
+            philosophy: "Culture is not a relic to be kept in a museum. It is a living, breathing entity. My work is not about preserving the past, but projecting it into the future.",
+            anonymous: "The face does not matter. Only the vision remains.",
+            contact: {
+                title: "Connect",
+                subtitle: "Have a vision to share?",
+                name: "Name",
+                email: "Email",
+                message: "Message",
+                send: "Send Message",
+                successTitle: "Message Sent",
+                success: "Message sent into the ether.",
+                sendAnother: "Send another"
+            }
+        },
+        art: {
+            collection: "COLLECTION / 2025",
+            artwork: "ARTWORK",
+            totalValue: "Total Value",
+            fileFormat: "File Format",
+            formats: "TIFF / JPEG / PDF"
         },
         download: {
             header: "Thank you!",
@@ -73,11 +145,19 @@ export const translations = {
             cards: {
                 album: {
                     title: "Full Album (MP3)",
-                    button: "Download ZIP"
+                    button: "Download ZIP",
+                    description: "High Quality MP3"
                 },
                 guide: {
                     title: "The Andean Cookbook & Guide",
-                    button: "Open PDF"
+                    button: "Open PDF",
+                    description: "Interactive Experience & Print Ready",
+                    actions: {
+                        readEn: "Read Guidebook (English)",
+                        readEs: "Leer la Guía (Español)",
+                        dlEn: "Download PDF (EN)",
+                        dlEs: "Descargar PDF (ES)"
+                    }
                 }
             }
         },
@@ -214,6 +294,13 @@ export const translations = {
     es: {
         nav: {
             language: "Idioma",
+            home: "Inicio",
+            music: "Música",
+            book: "Libro",
+            art: "Arte",
+            creator: "Creador",
+            bundle: "Paquete 12€",
+            buyBundle: "Comprar Paquete - 12€"
         },
         hero: {
             headline: "Lleva el Espíritu de<br />los Andes a Casa.",
@@ -235,7 +322,21 @@ export const translations = {
             albumTitle: "Ecos Andinos",
             subtitle: "Colección de Banda Sonora Original",
             buyButton: "Comprar Álbum 8€",
-            nowPlaying: "Reproduciendo Vista Previa"
+            nowPlaying: "REPRODUCIENDO",
+            paused: "PAUSADO",
+            mode: "Modo",
+            types: {
+                Ambient: "Ambiental",
+                Folk: "Folclórico",
+                Orchestral: "Orquestal",
+                Traditional: "Tradicional",
+                Ceremonial: "Ceremonial",
+                "Dark Folk": "Folk Oscuro",
+                "Flute Solo": "Solo de Flauta",
+                Lullaby: "Canción de Cuna",
+                Adventure: "Aventura",
+                Finale: "Final"
+            }
         },
         bundle: {
             title: "Incluido en tu Paquete de Souvenir Digital:",
@@ -260,21 +361,73 @@ export const translations = {
             chicharron: "Chicharrón Cusqueño"
         },
         reviews: {
+            title: "Historias de la Comunidad",
             sarah: "La música perfecta para recordar nuestro viaje a Machu Picchu. Nos transporta cada vez.",
             carlos: "Calidad de sonido increíble. Me siento como si estuviera de vuelta en la plaza de Cusco.",
             elena: "Una hermosa colección. ¡El recetario fue una maravillosa sorpresa!",
             mark: "El mejor souvenir que compré. Supera a un llavero cualquier día."
         },
+        valueStack: {
+            label: "El Paquete Completo",
+            title: "El Souvenir Digital",
+            description: "Todo lo que necesitas para traer la magia de los Andes a tu hogar. Una simple descarga.",
+            included: "Incluido",
+            items: {
+                music: {
+                    title: "Álbum Original del Plan de Estudios",
+                    subtitle: "12 Pistas de Alta Fidelidad",
+                    description: "Un viaje sonoro a través de los Andes. Incluye formatos MP3 y FLAC."
+                },
+                book: {
+                    title: "El Pergamino Andino",
+                    subtitle: "Libro Electrónico Interactivo",
+                    description: "Sumérgete en la historia, cultura e historias de los incas."
+                },
+                art: {
+                    title: "Colección de Arte Cinematográfico",
+                    subtitle: "6 Impresiones de Alta Resolución",
+                    description: "Fotografía curada de Cusco, lista para impresión de gran formato."
+                }
+            }
+        },
         checkout: {
             header: "Completa tu Compra",
             total: "Total",
+            subtotal: "Subtotal",
+            tax: "Impuestos",
+            digitalBundle: "Paquete Souvenir Andino",
+            digitalDownload: "Descarga Digital",
+            includes: "Incluye: Álbum, Guía PDF, Recetario",
             emailLabel: "Correo Electrónico",
             button: "Pagar Seguro",
             secure: "Pago Seguro",
             instant: "Descarga Instantánea",
-            guarantee: "Garantía de Devolución",
-            digitalBundle: "Paquete Souvenir Andino",
-            includes: "Incluye: Álbum, Guía PDF, Recetario"
+            guarantee: "Garantía de Devolución"
+        },
+        about: {
+            title: "El Creador",
+            subtitle: "Un hilo invisible conectando pasado y futuro.",
+            intro: "Nacido a la sombra del volcán Misti, criado entre las piedras imperiales de Cusco. Soy hijo de dos mundos.",
+            philosophy: "La cultura no es una reliquia para guardar en un museo. Es una entidad viva y constante. Mi trabajo no trata de preservar el pasado, sino de proyectarlo al futuro.",
+            anonymous: "El rostro no importa. Solo la visión permanece.",
+            contact: {
+                title: "Conectar",
+                subtitle: "¿Tienes una visión para compartir?",
+                name: "Nombre",
+                email: "Correo",
+                message: "Mensaje",
+                send: "Enviar Mensaje",
+                successTitle: "Mensaje Enviado",
+                success: "Mensaje enviado al éter.",
+                sendAnother: "Enviar otro"
+            }
+        },
+        art: {
+            collection: "COLECCIÓN / 2025",
+            artwork: "OBRA",
+            totalValue: "Valor Total",
+            fileFormat: "Formato de Archivo",
+            formats: "TIFF / JPEG / PDF"
         },
         download: {
             header: "¡Gracias!",
@@ -284,11 +437,19 @@ export const translations = {
             cards: {
                 album: {
                     title: "Álbum Completo (MP3)",
-                    button: "Descargar ZIP"
+                    button: "Descargar ZIP",
+                    description: "MP3 de Alta Calidad"
                 },
                 guide: {
                     title: "Recetario y Guía Andina",
-                    button: "Abrir PDF"
+                    button: "Abrir PDF",
+                    description: "Experiencia Interactiva y Lista para Imprimir",
+                    actions: {
+                        readEn: "Read Guidebook (English)", // Keeping language-specific names in their language
+                        readEs: "Leer la Guía (Español)",
+                        dlEn: "Download PDF (EN)",
+                        dlEs: "Descargar PDF (ES)"
+                    }
                 }
             }
         },

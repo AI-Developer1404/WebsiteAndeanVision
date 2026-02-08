@@ -69,7 +69,7 @@ const ReviewsCarousel: React.FC = () => {
         <section className="py-20 px-4 bg-andean-cream text-andean-slate overflow-hidden">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-center text-3xl font-bold mb-12 text-andean-terracotta tracking-tight">
-                    Community Stories
+                    {t.reviews.title}
                 </h2>
 
                 <div className="relative flex items-center justify-center gap-4">

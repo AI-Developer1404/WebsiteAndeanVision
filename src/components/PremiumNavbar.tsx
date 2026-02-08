@@ -5,7 +5,7 @@ import { Menu, X, Globe, Music, BookOpen, ShoppingBag, Home, Palette, User } fro
 import { useLanguage } from '../context/LanguageContext';
 
 const PremiumNavbar: React.FC = () => {
-    const { language, setLanguage } = useLanguage();
+    const { language, setLanguage, t } = useLanguage();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
@@ -30,11 +30,11 @@ const PremiumNavbar: React.FC = () => {
     };
 
     const navItems = [
-        { path: '/', label: 'Home', icon: Home },
-        { path: '/music', label: language === 'en' ? 'Music' : 'Música', icon: Music },
-        { path: '/cusco-book', label: language === 'en' ? 'Book' : 'Libro', icon: BookOpen },
-        { path: '/art', label: language === 'en' ? 'Art' : 'Arte', icon: Palette },
-        { path: '/about', label: language === 'en' ? 'Creator' : 'Creador', icon: User },
+        { path: '/', label: t.nav.home, icon: Home },
+        { path: '/music', label: t.nav.music, icon: Music },
+        { path: '/cusco-book', label: t.nav.book, icon: BookOpen },
+        { path: '/art', label: t.nav.art, icon: Palette },
+        { path: '/about', label: t.nav.creator, icon: User },
     ];
 
     return (
@@ -110,7 +110,7 @@ const PremiumNavbar: React.FC = () => {
                             `}
                         >
                             <ShoppingBag size={14} />
-                            <span>Bundle 12€</span>
+                            <span>{t.nav.bundle}</span>
                         </button>
 
                         {/* Mobile Menu Toggle */}
@@ -168,7 +168,7 @@ const PremiumNavbar: React.FC = () => {
                                     className="inline-flex items-center gap-3 px-8 py-4 bg-andean-gold text-black rounded-full font-bold text-xl mt-8 shadow-xl hover:scale-105 transition-transform"
                                 >
                                     <ShoppingBag />
-                                    Buy Bundle - $12
+                                    {t.nav.buyBundle}
                                 </button>
                             </motion.div>
                         </div>
