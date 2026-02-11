@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { artContent } from '../data/artContent';
-import { Palette, Printer, ShoppingBag, Maximize2, ArrowRight, ChevronLeft, ChevronRight, Frame } from 'lucide-react';
+import { Palette, Printer, ShoppingBag, Maximize2, ArrowRight, ChevronLeft, ChevronRight, Frame, Armchair, Image as ImageIcon, Monitor } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import MagneticButton from './MagneticButton';
+import FAQSection from './FAQSection';
 
 const ArtPage: React.FC = () => {
     const { language, t } = useLanguage();
@@ -150,15 +152,15 @@ const ArtPage: React.FC = () => {
                                     <div className="flex gap-4">
                                         <button
                                             onClick={prevSlide}
-                                            className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"
+                                            className="w-16 h-16 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"
                                         >
-                                            <ChevronLeft size={20} />
+                                            <ChevronLeft size={24} />
                                         </button>
                                         <button
                                             onClick={nextSlide}
-                                            className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"
+                                            className="w-16 h-16 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all"
                                         >
-                                            <ChevronRight size={20} />
+                                            <ChevronRight size={24} />
                                         </button>
                                     </div>
                                 </motion.div>
@@ -167,7 +169,7 @@ const ArtPage: React.FC = () => {
 
                         {/* Image Viewer Side */}
                         <div className="lg:col-span-8 lg:order-2 order-1 relative">
-                            <div className="aspect-[16/9] md:aspect-[21/9] bg-neutral-900 overflow-hidden relative group">
+                            <div className="aspect-[16/9] md:aspect-[21/9] bg-neutral-900 overflow-hidden relative group shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
                                 <AnimatePresence mode="wait">
                                     <motion.img
                                         key={currentItem.image}
@@ -189,14 +191,98 @@ const ArtPage: React.FC = () => {
                 </div>
             </section>
 
+            {/* NEW: VISUALIZE IN HOME SECTION */}
+            <section className="py-24 px-6 bg-neutral-900 border-t border-white/5">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
+                        <div>
+                            <div className="text-andean-gold font-mono text-sm tracking-widest mb-4 flex items-center gap-2">
+                                <Armchair size={16} />
+                                {t.art.previewTitle}
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-serif text-white max-w-2xl">{t.art.previewDesc}</h2>
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {/* Mockup 1 */}
+                        <div className="relative aspect-[4/3] bg-neutral-800 overflow-hidden group">
+                            <img
+                                src="/minimalist interior.png"
+                                alt="Living Room"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+
+                            <div className="absolute bottom-8 left-8">
+                                <h3 className="text-white text-xl font-serif">Minimalist Home</h3>
+                                <p className="text-gray-400 text-sm">Chinchero Market Print</p>
+                            </div>
+                        </div>
+
+                        {/* Mockup 2 */}
+                        <div className="relative aspect-[4/3] bg-neutral-800 overflow-hidden group">
+                            <img
+                                src="/modern interior.png"
+                                alt="Modern Office"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+
+                            <div className="absolute bottom-8 left-8">
+                                <h3 className="text-white text-xl font-serif">Modern Workspace</h3>
+                                <p className="text-gray-400 text-sm">Stone Wall Texture</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* NEW: THE CREATIVE JOURNEY */}
+            <section className="py-24 px-6 bg-black text-center">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-serif mb-16 text-white">{t.art.processTitle}</h2>
+
+                    <div className="grid md:grid-cols-3 gap-12 relative">
+                        {/* Connecting Line */}
+                        <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-andean-gold/50 to-transparent" />
+
+                        <div className="relative z-10 bg-black p-4">
+                            <div className="w-24 h-24 mx-auto bg-neutral-900 rounded-full flex items-center justify-center border border-white/10 mb-6 text-andean-gold shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                                <ImageIcon size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">1. The Moment</h3>
+                            <p className="text-gray-400 text-sm">Captured on location in the Sacred Valley using high-fidelity medium format cameras.</p>
+                        </div>
+
+                        <div className="relative z-10 bg-black p-4">
+                            <div className="w-24 h-24 mx-auto bg-neutral-900 rounded-full flex items-center justify-center border border-white/10 mb-6 text-andean-gold shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                                <Monitor size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">2. Digital Mastery</h3>
+                            <p className="text-gray-400 text-sm">Retouched and color-graded to emphasize the emotional tone and texture of the Andes.</p>
+                        </div>
+
+                        <div className="relative z-10 bg-black p-4">
+                            <div className="w-24 h-24 mx-auto bg-neutral-900 rounded-full flex items-center justify-center border border-white/10 mb-6 text-andean-gold shadow-[0_0_20px_rgba(255,215,0,0.1)]">
+                                <Printer size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">3. Print Ready</h3>
+                            <p className="text-gray-400 text-sm">Upscaled and formatted for museum-quality printing at sizes up to A1 (24x36").</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* PURCHASE SECTION */}
             {/* PURCHASE SECTION */}
             <section className="py-32 bg-neutral-950 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-80" style={{ maskImage: 'radial-gradient(circle, black 40%, transparent 100%)' }}>
+                <div className="absolute inset-0 opacity-10" style={{ maskImage: 'radial-gradient(circle, black 40%, transparent 100%)' }}>
                     <img src="/photo-assets/stenen muur.jpg" className="w-full h-full object-cover brightness-110 contrast-125" />
                 </div>
 
                 <div className="relative z-10 max-w-5xl mx-auto px-6">
-                    <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 md:p-20 text-center shadow-2xl">
+                    <div className="glass-panel p-12 md:p-20 text-center">
                         <h2 className="text-4xl md:text-7xl font-serif mb-4 text-white hover:text-andean-gold transition-colors duration-500 cursor-default">
                             {content.pricing.title}
                         </h2>
@@ -208,18 +294,18 @@ const ArtPage: React.FC = () => {
                                     <div className="p-3 bg-white/5 rounded-lg group-hover:bg-andean-gold group-hover:text-black transition-colors">
                                         {i === 0 ? <Maximize2 size={20} /> : i === 1 ? <Palette size={20} /> : <Printer size={20} />}
                                     </div>
-                                    <p className="text-gray-300 font-light text-sm">{point}</p>
+                                    <p className="text-gray-200 font-light text-sm">{point}</p>
                                 </div>
                             ))}
                         </div>
 
                         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                             <div className="text-right hidden md:block">
-                                <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">{t.art.totalValue}</p>
-                                <p className="text-gray-400 line-through decoration-andean-gold decoration-2">$60.00+</p>
+                                <p className="text-gray-400 font-mono text-xs uppercase tracking-widest">{t.art.totalValue}</p>
+                                <p className="text-white line-through decoration-andean-gold decoration-2 text-lg font-bold">$60.00+</p>
                             </div>
 
-                            <button
+                            <MagneticButton
                                 onClick={() => navigate('/checkout', { state: { product: 'Andean Visions Art Collection', price: 15, productId: 'art' } })}
                                 className="group relative px-12 py-6 bg-white text-black font-bold text-xl rounded-full overflow-hidden hover:scale-105 transition-transform"
                             >
@@ -228,16 +314,23 @@ const ArtPage: React.FC = () => {
                                     {content.pricing.button} <span className="opacity-30">|</span> {content.pricing.price}
                                 </span>
                                 <div className="absolute inset-0 bg-andean-gold translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                            </button>
+                            </MagneticButton>
 
                             <div className="text-left hidden md:block">
-                                <p className="text-gray-500 font-mono text-xs uppercase tracking-widest">{t.art.fileFormat}</p>
-                                <p className="text-white">{t.art.formats}</p>
+                                <p className="text-gray-400 font-mono text-xs uppercase tracking-widest">{t.art.fileFormat}</p>
+                                <p className="text-white text-lg font-bold">{t.art.formats}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* NEW: FAQ SECTION */}
+            <FAQSection
+                title={t.art.faqTitle}
+                items={t.art.faq}
+                className="bg-neutral-950 border-t border-white/5"
+            />
         </div>
     );
 };

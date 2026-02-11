@@ -18,12 +18,28 @@ export const translations = {
         },
         audio: {
             title: "Preview Collection",
+            featuredPreviews: "Featured Previews",
+            fullAlbum: "Full Album",
             tracks: {
                 track1: "Mystic Andes",
                 track2: "Sacred Valley",
                 track3: "Cusco Dawn",
                 track4: "Inca Trail",
-            }
+            },
+            playlist: [
+                { id: 1, title: "Sunrise over Machu Picchu", duration: "0:22", type: "Ambient", file: "/music previews/project 1 prev.mp3" },
+                { id: 2, title: "The Sacred Valley", duration: "0:25", type: "Folk", file: "/music previews/project 2 prev.mp3" },
+                { id: 3, title: "Flight of the Condor", duration: "0:24", type: "Orchestral", file: "/music previews/project 3 prev.mp3" },
+                { id: 4, title: "Echoes of the Incas", duration: "0:20", type: "Traditional", file: "/music previews/project 4 prev.mp3" },
+                { id: 5, title: "Mystic River (Urubamba)", duration: "0:22", type: "Ambient", file: "/music previews/project 5 prev.mp3" },
+                { id: 6, title: "Temple of the Sun", duration: "0:22", type: "Ceremonial", file: "/music previews/project 6 prev.mp3" },
+                { id: 7, title: "Shadows of the Stone", duration: "0:22", type: "Dark Folk", file: "/music previews/project 7 prev.mp3" },
+                { id: 8, title: "Wind in the Andes", duration: "0:24", type: "Flute Solo", file: "/music previews/project 8 prev.mp3" },
+                { id: 9, title: "Pachamama's Breath", duration: "0:29", type: "Ambient", file: "/music previews/project 9 prev.mp3" },
+                { id: 10, title: "Starry Cusco Night", duration: "0:22", type: "Lullaby", file: "/music previews/project 10 prev.mp3" },
+                { id: 11, title: "The Incan Road", duration: "0:22", type: "Adventure", file: "/music previews/project 11 prev.mp3" },
+                { id: 12, title: "Return to the Source", duration: "0:22", type: "Finale", file: "/music previews/project 12 prev.mp3" },
+            ]
         },
         musicPage: {
             back: "Back",
@@ -135,7 +151,18 @@ export const translations = {
             artwork: "ARTWORK",
             totalValue: "Total Value",
             fileFormat: "File Format",
-            formats: "TIFF / JPEG / PDF"
+            formats: "TIFF / JPEG / PDF",
+            previewTitle: "Interior Preview",
+            previewDesc: "Visualize the art in your space.",
+            processTitle: "The Process",
+            processDesc: "From the lens to the final print.",
+            faqTitle: "Art Collection Specs",
+            faq: [
+                { question: "Can I print these at home?", answer: "Yes! While we recommend a professional print shop or online service for the best results on textured paper, the files are standard formats that work with any high-quality home photo printer." },
+                { question: "What is the maximum print size?", answer: "The images are ultra-high resolution (300DPI) and can be printed crisply up to A1 size (59.4 x 84.1 cm) or 24x36 inches." },
+                { question: "Do you offer framing?", answer: "Currently, we only provide the digital files. This allows you the freedom to choose frames that match your specific decor tax-free and without shipping costs." },
+                { question: "Are these AI generated?", answer: "No. These are authentic photographs taken in the Sacred Valley of Peru, digitally processed to enhance their artistic qualities." }
+            ]
         },
         download: {
             header: "Thank you!",
@@ -181,6 +208,20 @@ export const translations = {
                 titleEnd: "Andes",
                 quote: "\"Where the wind plays the flute and the earth feeds the soul.\""
             },
+            insidePages: {
+                title: "Inside the Pages",
+                subtitle: "A sneak peek into the depth of content."
+            },
+            blueprint: {
+                title: "The Inca Blueprint",
+                text: "Trace the sacred lines connecting the empire's power centers."
+            },
+            faqTitle: "E-Book Details",
+            faq: [
+                { question: "Can I read this on my Kindle?", answer: "Yes! We provide a PDF version that works perfectly on Kindle, iPad, and all tablets. It is optimized for both color and black & white screens." },
+                { question: "Is it a physical book?", answer: "This is a digital-only guide. This allows us to include interactive links, high-resolution zoomable maps, and instant delivery to your email." },
+                { question: "Do I need internet to read it?", answer: "No. Once downloaded, the PDF is yours to keep and access offline, perfect for remote areas in the Sacred Valley." }
+            ],
             intro: {
                 quote: "\"Mountains do not speak, but they tell us everything.\"",
                 p1: "Dear traveler, thank you for walking with us through the cobblestone streets of Cusco. The air here is thin, but the memories are dense: woven into textiles, carved into stones, and carried by the mountain wind.",

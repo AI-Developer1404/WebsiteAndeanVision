@@ -2,25 +2,26 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, Pause, ChevronLeft, ChevronRight, Music2 } from 'lucide-react';
-
-const songs = [
-    { id: 1, title: "Sunrise over Machu Picchu", duration: "0:22", type: "Ambient", file: "/music previews/project 1 prev.mp3" },
-    { id: 2, title: "The Sacred Valley", duration: "0:25", type: "Folk", file: "/music previews/project 2 prev.mp3" },
-    { id: 3, title: "Flight of the Condor", duration: "0:24", type: "Orchestral", file: "/music previews/project 3 prev.mp3" },
-    { id: 4, title: "Echoes of the Incas", duration: "0:20", type: "Traditional", file: "/music previews/project 4 prev.mp3" },
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const AudioPlayer: React.FC = () => {
+    const { t } = useLanguage();
     const navigate = useNavigate();
+
+    // Use first 4 songs from translations for the preview player
+    const songs = (t.audio.playlist || []).slice(0, 4);
+
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [progress, setProgress] = useState(0);
     const [visualizerBars, setVisualizerBars] = useState<number[]>(new Array(20).fill(10));
 
-    const activeSong = songs[currentTrackIndex];
+    const activeSong = songs[currentTrackIndex] || { title: "", type: "", duration: "", file: "" };
 
     useEffect(() => {
+        if (!activeSong.file) return;
+
         audioRef.current = new Audio(activeSong.file);
         audioRef.current.volume = 0.5;
 
@@ -51,7 +52,7 @@ const AudioPlayer: React.FC = () => {
 
     // Handle Track Change
     useEffect(() => {
-        if (audioRef.current) {
+        if (audioRef.current && activeSong.file) {
             const wasPlaying = isPlaying;
             audioRef.current.pause();
             audioRef.current.src = activeSong.file;
@@ -99,6 +100,8 @@ const AudioPlayer: React.FC = () => {
         if (!isPlaying) setIsPlaying(true);
     };
 
+    if (!activeSong.file) return null;
+
     return (
         <div className="w-full max-w-4xl mx-auto">
             <div className="relative rounded-3xl bg-neutral-900/50 border border-white/10 backdrop-blur-xl p-8 overflow-hidden shadow-2xl">
@@ -129,7 +132,7 @@ const AudioPlayer: React.FC = () => {
                     {/* Right: Controls & Info */}
                     <div className="flex-1 w-full text-center md:text-left">
                         <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-xs font-bold tracking-[0.2em] text-andean-gold uppercase">Featured Previews</h3>
+                            <h3 className="text-xs font-bold tracking-[0.2em] text-andean-gold uppercase">{t.audio.featuredPreviews}</h3>
                             <div className="flex gap-1 h-4 items-end">
                                 {visualizerBars.slice(0, 10).map((h, i) => (
                                     <motion.div
@@ -177,7 +180,7 @@ const AudioPlayer: React.FC = () => {
                                 className="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-colors flex items-center gap-2 text-sm"
                             >
                                 <Music2 size={16} />
-                                Full Album
+                                {t.audio.fullAlbum}
                             </button>
                         </div>
                     </div>

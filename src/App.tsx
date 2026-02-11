@@ -35,6 +35,26 @@ const AnimatedRoutes: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  React.useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    import('@studio-freight/lenis').then((LenisModule) => {
+      const Lenis = LenisModule.default;
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    });
+  }, []);
+
   return (
     <LanguageProvider>
       <Router>

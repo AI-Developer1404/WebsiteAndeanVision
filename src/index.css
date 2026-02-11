@@ -7,3 +7,17 @@
     @apply bg-andean-cream text-andean-slate font-sans antialiased;
   }
 }
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-andean-gold via-yellow-200 to-andean-gold;
+  }
+
+  .magnetic-btn {
+    @apply relative overflow-hidden transition-transform duration-300 ease-out;
+  }
+}
