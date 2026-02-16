@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import MagneticButton from './MagneticButton';
 import FAQSection from './FAQSection';
+import BundlePreviewModal from './BundlePreviewModal';
 
 const MusicPage: React.FC = () => {
     const { t } = useLanguage();
@@ -16,7 +17,10 @@ const MusicPage: React.FC = () => {
     const [currentSong, setCurrentSong] = useState<number>(1);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
     const [visualizerBars, setVisualizerBars] = useState<number[]>(new Array(40).fill(10));
+    const [showBundlePreview, setShowBundlePreview] = useState(false);
 
     // Audio Reference
     const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -40,6 +44,8 @@ const MusicPage: React.FC = () => {
             if (audioRef.current) {
                 const percent = (audioRef.current.currentTime / audioRef.current.duration) * 100;
                 setProgress(percent || 0);
+                setCurrentTime(audioRef.current.currentTime);
+                setDuration(audioRef.current.duration || 0);
             }
         };
 
@@ -117,6 +123,14 @@ const MusicPage: React.FC = () => {
         setIsPlaying(!isPlaying);
     };
 
+    // Format time in mm:ss
+    const formatTime = (seconds: number): string => {
+        if (isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    };
+
     return (
         <div className="min-h-screen bg-black text-white font-sans selection:bg-andean-gold selection:text-black relative overflow-x-hidden">
 
@@ -166,7 +180,7 @@ const MusicPage: React.FC = () => {
                         ))}
                     </div>
 
-                    <div className="mt-8">
+                    <div className="mt-8 flex flex-col items-center gap-4">
                         <MagneticButton
                             onClick={() => navigate('/checkout', { state: { product: 'Digital Album', price: 8, productId: 'album' } })}
                         >
@@ -175,6 +189,12 @@ const MusicPage: React.FC = () => {
                                 <span>{t.musicPage.buyButton}</span>
                             </div>
                         </MagneticButton>
+                        <button
+                            onClick={() => setShowBundlePreview(true)}
+                            className="text-sm text-gray-400 hover:text-andean-gold transition-colors underline underline-offset-4"
+                        >
+                            {t.hero.previewIncluded}
+                        </button>
                     </div>
                 </div>
 
@@ -193,7 +213,11 @@ const MusicPage: React.FC = () => {
                     <div className="mb-10 p-8 bg-black/60 rounded-2xl border border-white/10 shadow-inner">
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-xs font-mono text-andean-gold animate-pulse tracking-widest">{isPlaying ? t.musicPage.nowPlaying : t.musicPage.paused}</span>
-                            <span className="text-xs font-mono text-gray-500">{activeSong.duration}</span>
+                            <div className="flex items-center gap-2 text-xs font-mono text-gray-500">
+                                <span>{formatTime(currentTime)}</span>
+                                <span>/</span>
+                                <span>{formatTime(duration)}</span>
+                            </div>
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold mb-2 text-white">{activeSong.title}</h3>
                         <p className="text-sm text-gray-400">{t.musicPage.types[activeSong.type as keyof typeof t.musicPage.types]} {t.musicPage.mode}</p>
@@ -262,27 +286,27 @@ const MusicPage: React.FC = () => {
                         <div className="glass-panel p-8 rounded-2xl relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
                             <div className="absolute top-0 right-0 p-32 bg-andean-gold/5 rounded-full blur-3xl group-hover:bg-andean-gold/10 transition-colors" />
                             <Mic className="text-andean-gold mb-6" size={40} />
-                            <h3 className="text-xl font-bold mb-4">Pan Flute (Zampoña)</h3>
+                            <h3 className="text-xl font-bold mb-4">{t.musicPage.instruments.panflute.title}</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                The breath of the mountains. Our recordings feature authentic bamboo pan flutes handcrafted in the Sacred Valley, capturing the wind's whisper through the peaks.
+                                {t.musicPage.instruments.panflute.desc}
                             </p>
                         </div>
 
                         <div className="glass-panel p-8 rounded-2xl relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
                             <div className="absolute top-0 right-0 p-32 bg-andean-terracotta/5 rounded-full blur-3xl group-hover:bg-andean-terracotta/10 transition-colors" />
                             <Music className="text-andean-gold mb-6" size={40} />
-                            <h3 className="text-xl font-bold mb-4">Charango</h3>
+                            <h3 className="text-xl font-bold mb-4">{t.musicPage.instruments.charango.title}</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                A small Andean stringed instrument with a voice like splashing water. Its shimmering high notes evoke the sparkling rivers of the Urubamba.
+                                {t.musicPage.instruments.charango.desc}
                             </p>
                         </div>
 
                         <div className="glass-panel p-8 rounded-2xl relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
                             <div className="absolute top-0 right-0 p-32 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-colors" />
                             <Radio className="text-andean-gold mb-6" size={40} />
-                            <h3 className="text-xl font-bold mb-4">Modern Soundscapes</h3>
+                            <h3 className="text-xl font-bold mb-4">{t.musicPage.instruments.modern.title}</h3>
                             <p className="text-gray-200 leading-relaxed">
-                                Synthesized textures meeting organic rhythms. A modern interpretation of the Andean atmosphere.
+                                {t.musicPage.instruments.modern.desc}
                             </p>
                         </div>
                     </div>
@@ -297,23 +321,23 @@ const MusicPage: React.FC = () => {
 
                     <div className="grid md:grid-cols-2 gap-8 text-left">
                         <div className="p-8 border border-white/10 rounded-2xl bg-white/5">
-                            <p className="text-xl text-gray-300 italic mb-6">"I played 'Starry Cusco Night' during my focused work session this morning. I immediately felt transported back to my trip in 2019. It’s hauntingly beautiful."</p>
+                            <p className="text-xl text-gray-300 italic mb-6">{t.musicPage.reviews.elena.text}</p>
                             <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 bg-andean-gold rounded-full flex items-center justify-center text-black font-bold">E</div>
                                 <div>
-                                    <p className="font-bold text-white">Elena R.</p>
-                                    <p className="text-xs text-gray-500">Verified Buyer</p>
+                                    <p className="font-bold text-white">{t.musicPage.reviews.elena.author}</p>
+                                    <p className="text-xs text-gray-500">{t.musicPage.reviews.elena.role}</p>
                                 </div>
                             </div>
                         </div>
 
                         <div className="p-8 border border-white/10 rounded-2xl bg-white/5">
-                            <p className="text-xl text-gray-300 italic mb-6">"The audio quality is pristine. I used 'Flight of the Condor' as background for my travel vlog (with credit, of course) and my audience loved it."</p>
+                            <p className="text-xl text-gray-300 italic mb-6">{t.musicPage.reviews.marcus.text}</p>
                             <div className="flex items-center gap-4">
                                 <div className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold">M</div>
                                 <div>
-                                    <p className="font-bold text-white">Marcus T.</p>
-                                    <p className="text-xs text-gray-500">Content Creator</p>
+                                    <p className="font-bold text-white">{t.musicPage.reviews.marcus.author}</p>
+                                    <p className="text-xs text-gray-500">{t.musicPage.reviews.marcus.role}</p>
                                 </div>
                             </div>
                         </div>
@@ -323,13 +347,17 @@ const MusicPage: React.FC = () => {
 
             {/* NEW: FAQ SECTION */}
             <FAQSection
-                title="Questions about the Album"
-                items={[
-                    { question: "What file format are the songs?", answer: "You will receive high-quality MP3 (320kbps) and WAV (Lossless) files, universally compatible with all phones, computers, and tablets." },
-                    { question: "How do I download the music?", answer: "Immediately after purchase, you'll be directed to the Download Hub where you can download the full album as a ZIP file or individual tracks." },
-                    { question: "Is this traditional or modern music?", answer: "It is a cinematic fusion. We use traditional Andean instruments (Pan Flute, Charango) recorded in high fidelity and blended with modern ambient synthesis for a relaxing, immersive experience." }
-                ]}
-                className="bg-neutral-900"
+                title={t.musicPage.faqTitle}
+                items={t.musicPage.faq}
+                className="bg-black border-t border-white/10"
+            />
+
+            <BundlePreviewModal
+                isOpen={showBundlePreview}
+                onClose={() => setShowBundlePreview(false)}
+                initialTab="music"
+                customTitle={t.musicPage.subtitle}
+                allowedTabs={['music']}
             />
         </div>
     );

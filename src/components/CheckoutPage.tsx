@@ -4,11 +4,14 @@ import { Lock, ShieldCheck, Download, CreditCard } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
+import BundlePreviewModal from './BundlePreviewModal';
+
 const CheckoutPage: React.FC = () => {
     const { t } = useLanguage();
     const navigate = useNavigate();
     const location = useLocation();
     const [email, setEmail] = useState('');
+    const [showBundlePreview, setShowBundlePreview] = useState(false);
 
     // Dynamic Product State
     const { product, price, productId } = location.state || {
@@ -21,6 +24,16 @@ const CheckoutPage: React.FC = () => {
         style: 'currency',
         currency: 'EUR'
     }).format(price);
+
+    // Map productId to modal tab
+    const getModalTab = () => {
+        switch (productId) {
+            case 'ebook': return 'book';
+            case 'art': return 'art';
+            case 'music': return 'music';
+            default: return 'music';
+        }
+    };
 
     // Mock payment handler - would normally integrate Stripe/Gumroad
     const handlePayment = (e: React.FormEvent) => {
@@ -47,8 +60,20 @@ const CheckoutPage: React.FC = () => {
 
                 {/* Item List */}
                 <div className="bg-white/5 rounded-xl p-6 mb-6">
-                    <h3 className="font-bold text-lg mb-2">{product}</h3>
-                    <p className="text-sm text-white/60 mb-4">{productId === 'bundle' ? t.checkout.includes : t.checkout.digitalDownload}</p>
+                    <h3 className="font-bold text-lg mb-1">{product}</h3>
+                    <div className="flex justify-between items-start mb-4">
+                        <button
+                            onClick={() => setShowBundlePreview(true)}
+                            className="text-xs text-andean-gold/80 hover:text-andean-gold underline cursor-pointer"
+                        >
+                            {t.checkout.includes || "View included items"}
+                        </button>
+                    </div>
+
+                    <p className="text-sm text-white/60 mb-4 border-t border-white/10 pt-2">
+                        {productId === 'bundle' ? t.checkout.includes : t.checkout.digitalDownload}
+                    </p>
+
                     <div className="flex justify-between items-center text-xl font-bold text-white">
                         <span>{t.checkout.total}</span>
                         <span>{formattedPrice}</span>
@@ -106,6 +131,13 @@ const CheckoutPage: React.FC = () => {
                     </div>
                 </div>
             </motion.div>
+
+            <BundlePreviewModal
+                isOpen={showBundlePreview}
+                onClose={() => setShowBundlePreview(false)}
+                initialTab={getModalTab()}
+                customTitle={productId === 'bundle' ? undefined : `Included in ${product}`}
+            />
         </div>
     );
 };

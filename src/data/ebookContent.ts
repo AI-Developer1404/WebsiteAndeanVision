@@ -20,6 +20,7 @@ export interface EbookContent {
         title: string;
         items: Array<{ title: string; description: string }>;
     };
+    faq?: Array<{ question: string; answer: string }>;
 }
 
 export const ebookContent: { en: EbookContent; es: EbookContent } = {
@@ -88,6 +89,11 @@ export const ebookContent: { en: EbookContent; es: EbookContent } = {
                 },
             ],
         },
+        faq: [
+            { question: "Can I read this on my Kindle?", answer: "Yes! We provide a PDF version that works perfectly on Kindle, iPad, and all tablets. It is optimized for both color and black & white screens." },
+            { question: "Is it a physical book?", answer: "This is a digital-only guide. This allows us to include interactive links, high-resolution zoomable maps, and instant delivery to your email." },
+            { question: "Do I need internet to read it?", answer: "No. Once downloaded, the PDF is yours to keep and access offline, perfect for remote areas in the Sacred Valley." }
+        ]
     },
     es: {
         title: "Cusco: Ciudad del Sol",
@@ -154,5 +160,10 @@ export const ebookContent: { en: EbookContent; es: EbookContent } = {
                 },
             ],
         },
+        faq: [
+            { question: "¿Puedo leer esto en mi Kindle?", answer: "¡Sí! Proporcionamos una versión PDF que funciona perfectamente en Kindle, iPad y todas las tabletas. Está optimizado para pantallas en color y blanco y negro." },
+            { question: "¿Es un libro físico?", answer: "Esta es una guía solo digital. Esto nos permite incluir enlaces interactivos, mapas ampliables de alta resolución y entrega instantánea a tu correo electrónico." },
+            { question: "¿Necesito internet para leerlo?", answer: "No. Una vez descargado, el PDF es tuyo para guardar y acceder sin conexión, perfecto para áreas remotas en el Valle Sagrado." }
+        ]
     },
 };

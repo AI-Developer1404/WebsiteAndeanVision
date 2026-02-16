@@ -15,6 +15,7 @@ export const translations = {
             subhead: "The official soundtrack of your journey.<br />Exclusive digital collection.",
             cta: "Buy Full Experience - 12€",
             scroll: "Scroll for more",
+            previewIncluded: "What's included in the download?"
         },
         audio: {
             title: "Preview Collection",
@@ -60,6 +61,40 @@ export const translations = {
                 Lullaby: "Lullaby",
                 Adventure: "Adventure",
                 Finale: "Finale"
+            },
+            faqTitle: "Questions about the Album",
+            faq: [
+                { question: "What file format are the songs?", answer: "You will receive high-quality MP3 (320kbps) and WAV (Lossless) files, universally compatible with all phones, computers, and tablets." },
+                { question: "How do I download the music?", answer: "Immediately after purchase, you'll be directed to the Download Hub where you can download the full album as a ZIP file or individual tracks." },
+                { question: "Is this traditional or modern music?", answer: "It is a cinematic fusion. We use traditional Andean instruments (Pan Flute, Charango) recorded in high fidelity and blended with modern ambient synthesis for a relaxing, immersive experience." }
+            ],
+            instruments: {
+                title: "The Soul of the Andes",
+                panflute: {
+                    title: "Pan Flute (Zampoña)",
+                    desc: "The breath of the mountains. Our recordings feature authentic bamboo pan flutes handcrafted in the Sacred Valley, capturing the wind's whisper through the peaks."
+                },
+                charango: {
+                    title: "Charango",
+                    desc: "A small Andean stringed instrument with a voice like splashing water. Its shimmering high notes evoke the sparkling rivers of the Urubamba."
+                },
+                modern: {
+                    title: "Modern Soundscapes",
+                    desc: "Synthesized textures meeting organic rhythms. A modern interpretation of the Andean atmosphere."
+                }
+            },
+            reviews: {
+                title: "Moments of Connection",
+                elena: {
+                    text: "\"I played 'Starry Cusco Night' during my focused work session this morning. I immediately felt transported back to my trip in 2019. It’s hauntingly beautiful.\"",
+                    author: "Elena R.",
+                    role: "Verified Buyer"
+                },
+                marcus: {
+                    text: "\"The audio quality is pristine. I used 'Flight of the Condor' as background for my travel vlog (with credit, of course) and my audience loved it.\"",
+                    author: "Marcus T.",
+                    role: "Content Creator"
+                }
             }
         },
         bundle: {
@@ -134,6 +169,12 @@ export const translations = {
             intro: "Born in the shadow of the Misti volcano, raised among the imperial stones of Cusco. I am a child of two worlds.",
             philosophy: "Culture is not a relic to be kept in a museum. It is a living, breathing entity. My work is not about preserving the past, but projecting it into the future.",
             anonymous: "The face does not matter. Only the vision remains.",
+            story: {
+                title: "The Calling",
+                p1: "I remember the first time I truly saw Machu Picchu—not as a tourist, but as someone who carries its stones in their blood. I was 17, standing at sunrise watching the mist dissolve like memories becoming present. That's when I understood: this wasn't just architecture. It was a language waiting to be translated for the modern world.",
+                p2: "My grandmother weaves textiles in Chinchero. Each thread carries a story, each pattern encodes wisdom passed down through generations. She taught me that art is not decoration—it's documentation of who we are. When I create music, compose visuals, or write about our culture, I'm doing what she does with her loom: I'm weaving connections between worlds.",
+                p3: "This digital souvenir isn't a product. It's a ceremony. Every song echoes the winds that carved these valleys. Every recipe holds the warmth of communal fires. Every artwork captures light the way our ancestors captured eternity in stone. I stay anonymous because the work should speak louder than the creator. What matters is that when you experience these pieces, you feel what I felt that morning—connected to something timeless, something sacred, something achingly beautiful."
+            },
             contact: {
                 title: "Connect",
                 subtitle: "Have a vision to share?",
@@ -162,7 +203,21 @@ export const translations = {
                 { question: "What is the maximum print size?", answer: "The images are ultra-high resolution (300DPI) and can be printed crisply up to A1 size (59.4 x 84.1 cm) or 24x36 inches." },
                 { question: "Do you offer framing?", answer: "Currently, we only provide the digital files. This allows you the freedom to choose frames that match your specific decor tax-free and without shipping costs." },
                 { question: "Are these AI generated?", answer: "No. These are authentic photographs taken in the Sacred Valley of Peru, digitally processed to enhance their artistic qualities." }
-            ]
+            ],
+            features: {
+                item1: {
+                    title: "The Moment",
+                    desc: "Captured on location in the Sacred Valley using high-fidelity medium format cameras."
+                },
+                item2: {
+                    title: "Digital Mastery",
+                    desc: "Retouched and color-graded to emphasize the emotional tone and texture of the Andes."
+                },
+                item3: {
+                    title: "Print Ready",
+                    desc: "Upscaled and formatted for museum-quality printing at sizes up to A1 (24x36\")."
+                }
+            }
         },
         download: {
             header: "Thank you!",
@@ -214,7 +269,12 @@ export const translations = {
             },
             blueprint: {
                 title: "The Inca Blueprint",
-                text: "Trace the sacred lines connecting the empire's power centers."
+                text: "Trace the sacred lines connecting the empire's power centers.",
+                items: [
+                    "Sacsayhuamán: The Puma’s Head - The engineering marvel that guards the city.",
+                    "Qorikancha: The Solar Center - The origin point of the sacred ceque lines.",
+                    "Ollantaytambo: The Living Grid - The perfectly preserved Inca urban blueprint."
+                ]
             },
             faqTitle: "E-Book Details",
             faq: [
@@ -222,6 +282,7 @@ export const translations = {
                 { question: "Is it a physical book?", answer: "This is a digital-only guide. This allows us to include interactive links, high-resolution zoomable maps, and instant delivery to your email." },
                 { question: "Do I need internet to read it?", answer: "No. Once downloaded, the PDF is yours to keep and access offline, perfect for remote areas in the Sacred Valley." }
             ],
+            previewButton: "Preview what's inside",
             intro: {
                 quote: "\"Mountains do not speak, but they tell us everything.\"",
                 p1: "Dear traveler, thank you for walking with us through the cobblestone streets of Cusco. The air here is thin, but the memories are dense: woven into textiles, carved into stones, and carried by the mountain wind.",
@@ -348,15 +409,32 @@ export const translations = {
             subhead: "La banda sonora oficial de tu viaje.<br />Colección digital exclusiva.",
             cta: "Comprar Experiencia - 12€",
             scroll: "Desliza para más",
+            previewIncluded: "¿Qué incluye la descarga?"
         },
         audio: {
             title: "Colección de Prueba",
+            featuredPreviews: "Vistas Previas Destacadas",
+            fullAlbum: "Álbum Completo",
             tracks: {
                 track1: "Andes Místicos",
                 track2: "Valle Sagrado",
                 track3: "Amanecer en Cusco",
                 track4: "Camino Inca",
-            }
+            },
+            playlist: [
+                { id: 1, title: "Amanecer sobre Machu Picchu", duration: "0:22", type: "Ambient", file: "/music previews/project 1 prev.mp3" },
+                { id: 2, title: "El Valle Sagrado", duration: "0:25", type: "Folk", file: "/music previews/project 2 prev.mp3" },
+                { id: 3, title: "Vuelo del Cóndor", duration: "0:24", type: "Orchestral", file: "/music previews/project 3 prev.mp3" },
+                { id: 4, title: "Ecos de los Incas", duration: "0:20", type: "Traditional", file: "/music previews/project 4 prev.mp3" },
+                { id: 5, title: "Río Místico (Urubamba)", duration: "0:22", type: "Ambient", file: "/music previews/project 5 prev.mp3" },
+                { id: 6, title: "Templo del Sol", duration: "0:22", type: "Ceremonial", file: "/music previews/project 6 prev.mp3" },
+                { id: 7, title: "Sombras de la Piedra", duration: "0:22", type: "Dark Folk", file: "/music previews/project 7 prev.mp3" },
+                { id: 8, title: "Viento en los Andes", duration: "0:24", type: "Flute Solo", file: "/music previews/project 8 prev.mp3" },
+                { id: 9, title: "Aliento de Pachamama", duration: "0:29", type: "Ambient", file: "/music previews/project 9 prev.mp3" },
+                { id: 10, title: "Noche Estrellada en Cusco", duration: "0:22", type: "Lullaby", file: "/music previews/project 10 prev.mp3" },
+                { id: 11, title: "El Camino Inca", duration: "0:22", type: "Adventure", file: "/music previews/project 11 prev.mp3" },
+                { id: 12, title: "Regreso a la Fuente", duration: "0:22", type: "Finale", file: "/music previews/project 12 prev.mp3" },
+            ]
         },
         musicPage: {
             back: "Volver",
@@ -377,6 +455,40 @@ export const translations = {
                 Lullaby: "Canción de Cuna",
                 Adventure: "Aventura",
                 Finale: "Final"
+            },
+            faqTitle: "Preguntas sobre el Álbum",
+            faq: [
+                { question: "¿En qué formato están las canciones?", answer: "Recibirás archivos MP3 (320kbps) y WAV (Lossless) de alta calidad, universalmente compatibles con todos los teléfonos, computadoras y tabletas." },
+                { question: "¿Cómo descargo la música?", answer: "Inmediatamente después de la compra, serás dirigido al Centro de Descargas donde podrás descargar el álbum completo como archivo ZIP o pistas individuales." },
+                { question: "¿Es música tradicional o moderna?", answer: "Es una fusión cinematográfica. Usamos instrumentos andinos tradicionales (Zampoña, Charango) grabados en alta fidelidad y mezclados con síntesis ambiental moderna para una experiencia relajante e inmersiva." }
+            ],
+            instruments: {
+                title: "El Alma de los Andes",
+                panflute: {
+                    title: "Flauta de Pan (Zampoña)",
+                    desc: "El aliento de las montañas. Nuestras grabaciones presentan auténticas zampoñas de bambú hechas a mano en el Valle Sagrado, capturando el susurro del viento a través de los picos."
+                },
+                charango: {
+                    title: "Charango",
+                    desc: "Un pequeño instrumento de cuerda andino con una voz como agua salpicando. Sus notas altas y brillantes evocan los ríos centelleantes del Urubamba."
+                },
+                modern: {
+                    title: "Paisajes Sonoros Modernos",
+                    desc: "Texturas sintetizadas que se encuentran con ritmos orgánicos. Una interpretación moderna de la atmósfera andina."
+                }
+            },
+            reviews: {
+                title: "Momentos de Conexión",
+                elena: {
+                    text: "\"Puse 'Noche Estrellada en Cusco' durante mi sesión de trabajo esta mañana. Inmediatamente me sentí transportada de nuevo a mi viaje en 2019. Es inquietantemente hermoso.\"",
+                    author: "Elena R.",
+                    role: "Compradora Verificada"
+                },
+                marcus: {
+                    text: "\"La calidad del audio es prístina. Usé 'Vuelo del Cóndor' como fondo para mi vlog de viajes (con crédito, por supuesto) y a mi audiencia le encantó.\"",
+                    author: "Marcus T.",
+                    role: "Creador de Contenido"
+                }
             }
         },
         bundle: {
@@ -451,6 +563,12 @@ export const translations = {
             intro: "Nacido a la sombra del volcán Misti, criado entre las piedras imperiales de Cusco. Soy hijo de dos mundos.",
             philosophy: "La cultura no es una reliquia para guardar en un museo. Es una entidad viva y constante. Mi trabajo no trata de preservar el pasado, sino de proyectarlo al futuro.",
             anonymous: "El rostro no importa. Solo la visión permanece.",
+            story: {
+                title: "El Llamado",
+                p1: "Recuerdo la primera vez que realmente vi Machu Picchu, no como turista, sino como alguien que lleva sus piedras en la sangre. Tenía 17 años, de pie al amanecer viendo la niebla disolverse como recuerdos haciéndose presentes. Fue entonces cuando entendí: esto no era solo arquitectura. Era un lenguaje esperando ser traducido para el mundo moderno.",
+                p2: "Mi abuela teje textiles en Chinchero. Cada hilo lleva una historia, cada patrón codifica una sabiduría transmitida de generación en generación. Ella me enseñó que el arte no es decoración, es documentación de quiénes somos. Cuando creo música, compongo visuales o escribo sobre nuestra cultura, estoy haciendo lo que ella hace con su telar: estoy tejiendo conexiones entre mundos.",
+                p3: "Este souvenir digital no es un producto. Es una ceremonia. Cada canción hace eco de los vientos que tallaron estos valles. Cada receta guarda el calor de los fuegos comunales. Cada obra de arte captura la luz de la manera en que nuestros antepasados capturaron la eternidad en piedra. Me mantengo anónimo porque la obra debe hablar más fuerte que el creador. Lo que importa es que cuando experimentes estas piezas, sientas lo que yo sentí esa mañana: conectado a algo atemporal, algo sagrado, algo dolorosamente hermoso."
+            },
             contact: {
                 title: "Conectar",
                 subtitle: "¿Tienes una visión para compartir?",
@@ -468,7 +586,32 @@ export const translations = {
             artwork: "OBRA",
             totalValue: "Valor Total",
             fileFormat: "Formato de Archivo",
-            formats: "TIFF / JPEG / PDF"
+            formats: "TIFF / JPEG / PDF",
+            previewTitle: "Vista Previa Interior",
+            previewDesc: "Visualiza el arte en tu espacio.",
+            processTitle: "El Proceso",
+            processDesc: "Desde la lente hasta la impresión final.",
+            faqTitle: "Especificaciones de la Colección de Arte",
+            faq: [
+                { question: "¿Puedo imprimir estos en casa?", answer: "¡Sí! Aunque recomendamos una imprenta profesional o servicio en línea para obtener los mejores resultados en papel texturizado, los archivos son formatos estándar que funcionan con cualquier impresora fotográfica de alta calidad para el hogar." },
+                { question: "¿Cuál es el tamaño máximo de impresión?", answer: "Las imágenes son de ultra alta resolución (300DPI) y se pueden imprimir con nitidez hasta el tamaño A1 (59.4 x 84.1 cm) o 24x36 pulgadas." },
+                { question: "¿Ofrecen enmarcado?", answer: "Actualmente, solo proporcionamos los archivos digitales. Esto te permite la libertad de elegir marcos que se ajusten a tu decoración específica sin impuestos y sin costos de envío." },
+                { question: "¿Son generados por IA?", answer: "No. Estas son fotografías auténticas tomadas en el Valle Sagrado de Perú, procesadas digitalmente para mejorar sus cualidades artísticas." }
+            ],
+            features: {
+                item1: {
+                    title: "El Momento",
+                    desc: "Capturado en locación en el Valle Sagrado usando cámaras de formato medio de alta fidelidad."
+                },
+                item2: {
+                    title: "Maestría Digital",
+                    desc: "Retocado y graduado en color para enfatizar el tono emocional y la textura de los Andes."
+                },
+                item3: {
+                    title: "Listo para Imprimir",
+                    desc: "Escalado y formateado para impresión de calidad de museo en tamaños de hasta A1 (24x36\")."
+                }
+            }
         },
         download: {
             header: "¡Gracias!",
@@ -514,6 +657,26 @@ export const translations = {
                 titleEnd: "Andes",
                 quote: "\"Donde el viento toca la flauta y la tierra alimenta el alma.\""
             },
+            insidePages: {
+                title: "Dentro de las Páginas",
+                subtitle: "Un vistazo a la profundidad del contenido."
+            },
+            blueprint: {
+                title: "El Plano Inca",
+                text: "Traza las líneas sagradas que conectan los centros de poder del imperio.",
+                items: [
+                    "Sacsayhuamán: La Cabeza del Puma - La maravilla de ingeniería que protege la ciudad.",
+                    "Qorikancha: El Centro Solar - El punto de origen de las líneas sagradas ceques.",
+                    "Ollantaytambo: La Cuadrícula Viviente - El plano urbano inca perfectamente conservado."
+                ]
+            },
+            faqTitle: "Detalles del E-Book",
+            faq: [
+                { question: "¿Puedo leer esto en mi Kindle?", answer: "¡Sí! Proporcionamos una versión PDF que funciona perfectamente en Kindle, iPad y todas las tabletas. Está optimizado para pantallas en color y en blanco y negro." },
+                { question: "¿Es un libro físico?", answer: "Esta es una guía solo digital. Esto nos permite incluir enlaces interactivos, mapas ampliables de alta resolución y entrega instantánea a tu correo electrónico." },
+                { question: "¿Necesito internet para leerlo?", answer: "No. Una vez descargado, el PDF es tuyo para guardar y acceder sin conexión, perfecto para áreas remotas en el Valle Sagrado." }
+            ],
+            previewButton: "Vista previa del interior",
             intro: {
                 quote: "\"Las montañas no hablan, pero nos cuentan todo.\"",
                 p1: "Querido viajero, gracias por caminar con nosotros por las calles empedradas de Cusco. El aire aquí es delgado, pero las memorias son densas: tejidas en los textiles, talladas en las piedras y transportadas por el viento de la montaña.",

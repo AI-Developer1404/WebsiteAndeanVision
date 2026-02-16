@@ -7,12 +7,14 @@ import { ebookContent } from '../data/ebookContent';
 import LazyBackgroundVideo from './LazyBackgroundVideo';
 import MagneticButton from './MagneticButton';
 import FAQSection from './FAQSection';
+import BundlePreviewModal from './BundlePreviewModal';
 
 const EbookLandingPage: React.FC = () => {
     const navigate = useNavigate();
     const { language, t } = useLanguage();
     const content = ebookContent[language];
     const containerRef = useRef(null);
+    const [showBundlePreview, setShowBundlePreview] = useState(false);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
@@ -27,15 +29,20 @@ const EbookLandingPage: React.FC = () => {
     const icons = [Mountain, Map, Crown, Users, Mountain, Calendar, Users];
 
     // Carousel State
-    const [currentSlide, setCurrentSlide] = useState(0);
+    // Carousel State
+    const carouselRef = useRef<HTMLDivElement>(null);
     const spreads = [
         { id: 1, title: "Detailed Typography", image: "/first.png", desc: "Optimized for readability on all devices." },
         { id: 2, title: "Exclusive Imagery", image: "/second.png", desc: "We use our own exclusive imagery." },
         { id: 3, title: "Local Insight", image: "/third.png", desc: "Written by a Cusco native sharing extensive local knowledge and hidden stories." },
     ];
 
-    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % spreads.length);
-    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + spreads.length) % spreads.length);
+    const scrollCarousel = (direction: 'left' | 'right') => {
+        if (carouselRef.current) {
+            const scrollAmount = direction === 'left' ? -340 : 340;
+            carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
 
     return (
         <div ref={containerRef} className="relative bg-gradient-to-b from-blue-900 via-slate-950 to-black text-andean-cream font-sans selection:bg-andean-gold selection:text-neutral-950 overflow-x-hidden">
@@ -90,6 +97,13 @@ const EbookLandingPage: React.FC = () => {
                             </div>
                         </MagneticButton>
                     </div>
+
+                    <button
+                        onClick={() => setShowBundlePreview(true)}
+                        className="mt-6 text-sm text-gray-400 hover:text-white transition-colors underline underline-offset-4"
+                    >
+                        Preview what's inside
+                    </button>
                 </motion.div>
 
                 <motion.div
@@ -128,44 +142,49 @@ const EbookLandingPage: React.FC = () => {
                     </div>
 
                     <div className="flex gap-4">
-                        <button
-                            onClick={prevSlide}
-                            className="bg-white/5 hover:bg-white/10 p-4 rounded-full border border-white/10 transition-colors"
-                        >
-                            <ChevronLeft size={24} className="text-white" />
-                        </button>
-                        <button
-                            onClick={nextSlide}
-                            className="bg-white/5 hover:bg-white/10 p-4 rounded-full border border-white/10 transition-colors"
-                        >
-                            <ChevronRight size={24} className="text-white" />
-                        </button>
+                        <div className="flex gap-4">
+                            <button
+                                onClick={() => scrollCarousel('left')}
+                                className="bg-white/5 hover:bg-white/10 p-4 rounded-full border border-white/10 transition-colors"
+                                aria-label="Previous slide"
+                            >
+                                <ChevronLeft size={24} className="text-white" />
+                            </button>
+                            <button
+                                onClick={() => scrollCarousel('right')}
+                                className="bg-white/5 hover:bg-white/10 p-4 rounded-full border border-white/10 transition-colors"
+                                aria-label="Next slide"
+                            >
+                                <ChevronRight size={24} className="text-white" />
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div className="relative w-full max-w-[1400px] mx-auto px-6">
-                    <div className="overflow-hidden">
-                        <motion.div
-                            className="flex gap-8"
-                            animate={{ x: `-${currentSlide * 350}px` }}
-                            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                        >
-                            {spreads.map((spread) => (
-                                <motion.div
-                                    key={spread.id}
-                                    className="min-w-[300px] md:min-w-[400px] bg-neutral-800 rounded-lg overflow-hidden border border-white/10 relative group"
-                                    whileHover={{ y: -10 }}
-                                >
-                                    <div className="aspect-[3/4] overflow-hidden">
-                                        <img src={spread.image} alt={spread.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                                    </div>
-                                    <div className="p-6 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-12">
-                                        <h3 className="text-xl font-serif text-white mb-2">{spread.title}</h3>
-                                        <p className="text-gray-400 text-sm">{spread.desc}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
+                    <div
+                        ref={carouselRef}
+                        className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 custom-scrollbar scroll-smooth"
+                    >
+                        {spreads.map((spread) => (
+                            <motion.div
+                                key={spread.id}
+                                className="w-[85vw] md:w-[600px] snap-center bg-neutral-900 rounded-xl overflow-hidden border border-white/10 relative group shrink-0"
+                                whileHover={{ y: -5 }}
+                            >
+                                <div className="aspect-[4/3] relative bg-neutral-950">
+                                    <img
+                                        src={spread.image}
+                                        alt={spread.title}
+                                        className="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                                    />
+                                </div>
+                                <div className="p-6 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-12">
+                                    <h3 className="text-xl font-serif text-white mb-2">{spread.title}</h3>
+                                    <p className="text-gray-400 text-sm">{spread.desc}</p>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -186,19 +205,20 @@ const EbookLandingPage: React.FC = () => {
                                 Beyond the tourist trails lay the ceques—sacred invisible lines radiating from Cusco.
                                 We have mapped the most energetically powerful sites mentioned in the guide.
                             </p>
-                            <ul className="space-y-3">
-                                <li className="flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-andean-gold" />
-                                    <span>Sacsayhuamán’s Solar Alignment</span>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-andean-gold" />
-                                    <span>The Moray Agricultural Terraces</span>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-andean-gold" />
-                                    <span>Ollantaytambo’s Wind Gate</span>
-                                </li>
+                            <ul className="space-y-4">
+                                {(t.ebook.blueprint?.items || []).map((item, idx) => (
+                                    <motion.li
+                                        key={idx}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: idx * 0.1 }}
+                                        className="flex items-start gap-4"
+                                    >
+                                        <div className="w-2 h-2 rounded-full bg-andean-gold mt-2 shrink-0 shadow-[0_0_10px_rgba(255,215,0,0.5)]" />
+                                        <span className="text-gray-300 text-lg">{item}</span>
+                                    </motion.li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -261,6 +281,12 @@ const EbookLandingPage: React.FC = () => {
                                 </div>
                             </MagneticButton>
                         </div>
+                        <button
+                            onClick={() => setShowBundlePreview(true)}
+                            className="relative z-10 mt-6 text-sm text-black/60 hover:text-black transition-colors underline underline-offset-4 font-bold"
+                        >
+                            Preview the guide
+                        </button>
                     </div>
                 </div>
             </section>
@@ -268,14 +294,19 @@ const EbookLandingPage: React.FC = () => {
             {/* NEW: FAQ SECTION */}
             <FAQSection
                 title="E-Book Details"
-                items={[
-                    { question: "Can I read this on my Kindle?", answer: "Yes! We provide a PDF version that works perfectly on Kindle, iPad, and all tablets. It is optimized for both color and black & white screens." },
-                    { question: "Is it a physical book?", answer: "This is a digital-only guide. This allows us to include interactive links, high-resolution zoomable maps, and instant delivery to your email." },
-                    { question: "Do I need internet to read it?", answer: "No. Once downloaded, the PDF is yours to keep and access offline, perfect for remote areas in the Sacred Valley." }
-                ]}
-                className="bg-neutral-950 border-t border-white/5"
+                items={content.faq || []} // Fallback to content.faq if translation not found
+                className="bg-black border-t border-white/10"
             />
-        </div>
+
+            <BundlePreviewModal
+                isOpen={showBundlePreview}
+                onClose={() => setShowBundlePreview(false)}
+                initialTab="book"
+                customTitle={t.ebook.nav.title}
+                allowedTabs={['book']}
+            />
+
+        </div >
     );
 };
 

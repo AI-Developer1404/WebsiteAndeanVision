@@ -6,12 +6,14 @@ import { Palette, Printer, ShoppingBag, Maximize2, ArrowRight, ChevronLeft, Chev
 import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 import FAQSection from './FAQSection';
+import BundlePreviewModal from './BundlePreviewModal';
 
 const ArtPage: React.FC = () => {
     const { language, t } = useLanguage();
     const content = artContent[language];
     const navigate = useNavigate();
     const { scrollY } = useScroll();
+    const [showBundlePreview, setShowBundlePreview] = useState(false);
 
     // Parallax & Opacity effects for Hero
     const yHero = useTransform(scrollY, [0, 800], [0, 300]);
@@ -251,24 +253,24 @@ const ArtPage: React.FC = () => {
                             <div className="w-24 h-24 mx-auto bg-neutral-900 rounded-full flex items-center justify-center border border-white/10 mb-6 text-andean-gold shadow-[0_0_20px_rgba(255,215,0,0.1)]">
                                 <ImageIcon size={32} />
                             </div>
-                            <h3 className="text-xl font-bold mb-2">1. The Moment</h3>
-                            <p className="text-gray-400 text-sm">Captured on location in the Sacred Valley using high-fidelity medium format cameras.</p>
+                            <h3 className="text-xl font-bold mb-2">{t.art.features.item1.title}</h3>
+                            <p className="text-gray-400 text-sm">{t.art.features.item1.desc}</p>
                         </div>
 
                         <div className="relative z-10 bg-black p-4">
                             <div className="w-24 h-24 mx-auto bg-neutral-900 rounded-full flex items-center justify-center border border-white/10 mb-6 text-andean-gold shadow-[0_0_20px_rgba(255,215,0,0.1)]">
                                 <Monitor size={32} />
                             </div>
-                            <h3 className="text-xl font-bold mb-2">2. Digital Mastery</h3>
-                            <p className="text-gray-400 text-sm">Retouched and color-graded to emphasize the emotional tone and texture of the Andes.</p>
+                            <h3 className="text-xl font-bold mb-2">{t.art.features.item2.title}</h3>
+                            <p className="text-gray-400 text-sm">{t.art.features.item2.desc}</p>
                         </div>
 
                         <div className="relative z-10 bg-black p-4">
                             <div className="w-24 h-24 mx-auto bg-neutral-900 rounded-full flex items-center justify-center border border-white/10 mb-6 text-andean-gold shadow-[0_0_20px_rgba(255,215,0,0.1)]">
                                 <Printer size={32} />
                             </div>
-                            <h3 className="text-xl font-bold mb-2">3. Print Ready</h3>
-                            <p className="text-gray-400 text-sm">Upscaled and formatted for museum-quality printing at sizes up to A1 (24x36").</p>
+                            <h3 className="text-xl font-bold mb-2">{t.art.features.item3.title}</h3>
+                            <p className="text-gray-400 text-sm">{t.art.features.item3.desc}</p>
                         </div>
                     </div>
                 </div>
@@ -299,39 +301,55 @@ const ArtPage: React.FC = () => {
                             ))}
                         </div>
 
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                            <div className="text-right hidden md:block">
-                                <p className="text-gray-400 font-mono text-xs uppercase tracking-widest">{t.art.totalValue}</p>
-                                <p className="text-white line-through decoration-andean-gold decoration-2 text-lg font-bold">$60.00+</p>
-                            </div>
+                        <div className="flex flex-col items-center gap-4">
+                            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                                <div className="text-right hidden md:block">
+                                    <p className="text-gray-400 font-mono text-xs uppercase tracking-widest">{t.art.totalValue}</p>
+                                    <p className="text-white line-through decoration-andean-gold decoration-2 text-lg font-bold">$60.00+</p>
+                                </div>
 
-                            <MagneticButton
-                                onClick={() => navigate('/checkout', { state: { product: 'Andean Visions Art Collection', price: 15, productId: 'art' } })}
-                                className="group relative px-12 py-6 bg-white text-black font-bold text-xl rounded-full overflow-hidden hover:scale-105 transition-transform"
+                                <MagneticButton
+                                    onClick={() => navigate('/checkout', { state: { product: 'Andean Visions Art Collection', price: 15, productId: 'art' } })}
+                                    className="group relative px-12 py-6 bg-white text-black font-bold text-xl rounded-full overflow-hidden hover:scale-105 transition-transform"
+                                >
+                                    <span className="relative z-10 flex items-center gap-4">
+                                        <ShoppingBag size={24} />
+                                        {content.pricing.button} <span className="opacity-30">|</span> {content.pricing.price}
+                                    </span>
+                                    <div className="absolute inset-0 bg-andean-gold translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                                </MagneticButton>
+
+                                <div className="text-left hidden md:block">
+                                    <p className="text-gray-400 font-mono text-xs uppercase tracking-widest">{t.art.fileFormat}</p>
+                                    <p className="text-white text-lg font-bold">{t.art.formats}</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setShowBundlePreview(true)}
+                                className="text-sm text-gray-400 hover:text-white transition-colors underline underline-offset-4"
                             >
-                                <span className="relative z-10 flex items-center gap-4">
-                                    <ShoppingBag size={24} />
-                                    {content.pricing.button} <span className="opacity-30">|</span> {content.pricing.price}
-                                </span>
-                                <div className="absolute inset-0 bg-andean-gold translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                            </MagneticButton>
-
-                            <div className="text-left hidden md:block">
-                                <p className="text-gray-400 font-mono text-xs uppercase tracking-widest">{t.art.fileFormat}</p>
-                                <p className="text-white text-lg font-bold">{t.art.formats}</p>
-                            </div>
+                                {t.hero.previewIncluded}
+                            </button>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* NEW: FAQ SECTION */}
-            <FAQSection
+            < FAQSection
                 title={t.art.faqTitle}
                 items={t.art.faq}
                 className="bg-neutral-950 border-t border-white/5"
             />
-        </div>
+
+            <BundlePreviewModal
+                isOpen={showBundlePreview}
+                onClose={() => setShowBundlePreview(false)}
+                initialTab="art"
+                customTitle={t.art.previewTitle}
+                allowedTabs={['art']}
+            />
+        </div >
     );
 };
 

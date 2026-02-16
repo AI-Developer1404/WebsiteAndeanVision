@@ -10,11 +10,21 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [language, setLanguage] = useState<Language>('en');
+    // Initialize language from localStorage or default to 'en'
+    const [language, setLanguage] = useState<Language>(() => {
+        const savedLanguage = localStorage.getItem('preferred-language');
+        return (savedLanguage === 'en' || savedLanguage === 'es') ? savedLanguage : 'en';
+    });
+
+    // Persist language changes to localStorage
+    const handleSetLanguage = (lang: Language) => {
+        setLanguage(lang);
+        localStorage.setItem('preferred-language', lang);
+    };
 
     const value = {
         language,
-        setLanguage,
+        setLanguage: handleSetLanguage,
         t: translations[language],
     };
 

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import heroImage from '../assets/images/hero.png';
 import LazyBackgroundVideo from './LazyBackgroundVideo';
 import { useLanguage } from '../context/LanguageContext';
+import BundlePreviewModal from './BundlePreviewModal';
 
 const HeroSection: React.FC = () => {
     const { t, language } = useLanguage();
+    const [showBundlePreview, setShowBundlePreview] = useState(false);
 
     return (
         <section className="relative h-screen w-full overflow-hidden">
@@ -51,18 +53,27 @@ const HeroSection: React.FC = () => {
                     dangerouslySetInnerHTML={{ __html: t.hero.subhead }}
                 />
 
-                <Link to="/checkout" className="group relative inline-flex items-center justify-center">
-                    <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-andean-gold to-yellow-600 opacity-70 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="relative rounded-full bg-black px-10 py-5 text-lg font-bold text-white ring-1 ring-white/10 transition-all group-hover:ring-andean-gold/50"
+                <div className="flex flex-col items-center gap-4">
+                    <Link to="/checkout" className="group relative inline-flex items-center justify-center">
+                        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-andean-gold to-yellow-600 opacity-70 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="relative rounded-full bg-black px-10 py-5 text-lg font-bold text-white ring-1 ring-white/10 transition-all group-hover:ring-andean-gold/50"
+                        >
+                            <span className="bg-gradient-to-r from-andean-gold to-white bg-clip-text text-transparent group-hover:text-white transition-colors">
+                                {t.hero.cta}
+                            </span>
+                        </motion.button>
+                    </Link>
+
+                    <button
+                        onClick={() => setShowBundlePreview(true)}
+                        className="text-sm text-gray-400 hover:text-andean-gold transition-colors underline underline-offset-4"
                     >
-                        <span className="bg-gradient-to-r from-andean-gold to-white bg-clip-text text-transparent group-hover:text-white transition-colors">
-                            {t.hero.cta}
-                        </span>
-                    </motion.button>
-                </Link>
+                        What's included?
+                    </button>
+                </div>
             </div>
 
             {/* Scroll Indicator */}
@@ -73,6 +84,12 @@ const HeroSection: React.FC = () => {
             >
                 <span className="text-sm">{t.hero.scroll}</span>
             </motion.div>
+
+            {/* Bundle Preview Modal */}
+            <BundlePreviewModal
+                isOpen={showBundlePreview}
+                onClose={() => setShowBundlePreview(false)}
+            />
         </section>
     );
 };

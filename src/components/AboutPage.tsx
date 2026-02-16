@@ -134,19 +134,19 @@ const AboutPage: React.FC = () => {
                             className="w-full max-w-3xl text-center"
                         >
                             <span className="text-andean-gold text-xs font-mono mb-4 block">03 / THE JOURNEY</span>
-                            <h2 className="text-4xl font-serif text-white mb-12">The Calling</h2>
+                            <h2 className="text-4xl font-serif text-white mb-12">{t.about.story.title}</h2>
 
                             <div className="space-y-8 text-gray-300 leading-loose font-light text-lg">
                                 <p className="text-left border-l border-andean-gold/30 pl-6">
-                                    I remember the first time I truly saw Machu Picchu—not as a tourist, but as someone who carries its stones in their blood. I was 17, standing at sunrise watching the mist dissolve like memories becoming present. That's when I understood: this wasn't just architecture. It was a language waiting to be translated for the modern world.
+                                    {t.about.story.p1}
                                 </p>
 
                                 <p className="text-left border-l border-andean-gold/30 pl-6">
-                                    My grandmother weaves textiles in Chinchero. Each thread carries a story, each pattern encodes wisdom passed down through generations. She taught me that art is not decoration—it's documentation of who we are. When I create music, compose visuals, or write about our culture, I'm doing what she does with her loom: I'm weaving connections between worlds.
+                                    {t.about.story.p2}
                                 </p>
 
                                 <p className="text-left border-l border-andean-gold/30 pl-6">
-                                    This digital souvenir isn't a product. It's a ceremony. Every song echoes the winds that carved these valleys. Every recipe holds the warmth of communal fires. Every artwork captures light the way our ancestors captured eternity in stone. I stay anonymous because the work should speak louder than the creator. What matters is that when you experience these pieces, you feel what I felt that morning—connected to something timeless, something sacred, something achingly beautiful.
+                                    {t.about.story.p3}
                                 </p>
                             </div>
                         </motion.div>
