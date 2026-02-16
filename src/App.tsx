@@ -40,6 +40,8 @@ const AnimatedRoutes: React.FC = () => {
   );
 };
 
+import GlobalBackground from './components/GlobalBackground';
+
 const App: React.FC = () => {
   React.useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -64,6 +66,7 @@ const App: React.FC = () => {
   return (
     <LanguageProvider>
       <Router>
+        <GlobalBackground />
         <PremiumNavbar />
         <React.Suspense fallback={<LoadingSpinner />}>
           <AnimatedRoutes />

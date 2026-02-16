@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import heroImage from '../assets/images/hero.png';
-import LazyBackgroundVideo from './LazyBackgroundVideo';
+
 import { useLanguage } from '../context/LanguageContext';
 import BundlePreviewModal from './BundlePreviewModal';
 
@@ -14,16 +13,9 @@ const HeroSection: React.FC = () => {
         <section className="relative h-screen w-full overflow-hidden">
             {/* Navbar removed - using global Navbar */}
 
-            {/* Cinematic Video Background */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <LazyBackgroundVideo
-                    src="/background.mp4"
-                    poster={heroImage}
-                    priority={true}
-                    className="h-full w-full object-cover"
-                />
-                {/* Readability Overlay (Cinematic Vignette) */}
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-950/80 via-black/20 to-black/90" />
+            {/* Cinematic Video Background - MOVED TO GLOBAL BACKGROUND */}
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                {/* Fallback pattern or nothing, as GlobalBackground handles the video */}
             </div>
 
             {/* Content */}
