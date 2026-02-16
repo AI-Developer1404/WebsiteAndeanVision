@@ -17,15 +17,19 @@ const BundlePreviewModal: React.FC<BundlePreviewModalProps> = ({ isOpen, onClose
     const [activeTab, setActiveTab] = useState<'music' | 'book' | 'art'>(initialTab);
 
     // Reset tab when modal opens or initialTab changes
+    // Reset tab when modal opens or initialTab changes
     React.useEffect(() => {
         if (isOpen) {
             setActiveTab(initialTab);
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden'; // Lock html too for mobile support
         } else {
             document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'unset';
         }
         return () => {
             document.body.style.overflow = 'unset';
+            document.documentElement.style.overflow = 'unset';
         };
     }, [isOpen, initialTab]);
 
@@ -118,7 +122,7 @@ const BundlePreviewModal: React.FC<BundlePreviewModalProps> = ({ isOpen, onClose
                 <div>
                     <h3 className="text-xl font-bold mb-4 text-white">{t.valueStack.items.art.title}</h3>
                     <p className="text-gray-400 mb-6">{t.valueStack.items.art.description}</p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {artContent[language].gallery.map((item) => (
                             <div key={item.id} className="aspect-[4/3] bg-neutral-800 rounded-lg border border-white/10 overflow-hidden relative group">
                                 <img
