@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { artContent } from '../data/artContent';
-import { Palette, Printer, ShoppingBag, Maximize2, ArrowRight, ChevronLeft, ChevronRight, Frame, Armchair, Image as ImageIcon, Monitor } from 'lucide-react';
+import { Palette, Printer, ShoppingBag, Maximize2, ArrowRight, ChevronLeft, ChevronRight, Frame, Image as ImageIcon, Monitor } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 import FAQSection from './FAQSection';
 import BundlePreviewModal from './BundlePreviewModal';
+import InteriorPreviewApp from './InteriorPreviewApp';
 
 const ArtPage: React.FC = () => {
     const { language, t } = useLanguage();
@@ -30,12 +31,6 @@ const ArtPage: React.FC = () => {
     };
 
     const currentItem = content.gallery[currentIndex];
-
-    // Auto-advance if not interacting
-    useEffect(() => {
-        const timer = setInterval(nextSlide, 8000);
-        return () => clearInterval(timer);
-    }, [currentIndex]);
 
     return (
         <div className="bg-neutral-950 text-white font-sans selection:bg-andean-gold selection:text-black min-h-screen overflow-x-hidden">
@@ -193,52 +188,17 @@ const ArtPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* NEW: VISUALIZE IN HOME SECTION */}
-            <section className="py-24 px-6 bg-neutral-900 border-t border-white/5">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
-                        <div>
-                            <div className="text-andean-gold font-mono text-sm tracking-widest mb-4 flex items-center gap-2">
-                                <Armchair size={16} />
-                                {t.art.previewTitle}
-                            </div>
-                            <h2 className="text-4xl md:text-6xl font-serif text-white max-w-2xl">{t.art.previewDesc}</h2>
-                        </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {/* Mockup 1 */}
-                        <div className="relative aspect-[4/3] bg-neutral-800 overflow-hidden group">
-                            <img
-                                src="/minimalist interior.png"
-                                alt="Living Room"
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
-                            <div className="absolute bottom-8 left-8">
-                                <h3 className="text-white text-xl font-serif">Minimalist Home</h3>
-                                <p className="text-gray-400 text-sm">Chinchero Market Print</p>
-                            </div>
-                        </div>
-
-                        {/* Mockup 2 */}
-                        <div className="relative aspect-[4/3] bg-neutral-800 overflow-hidden group">
-                            <img
-                                src="/modern interior.png"
-                                alt="Modern Office"
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-
-                            <div className="absolute bottom-8 left-8">
-                                <h3 className="text-white text-xl font-serif">Modern Workspace</h3>
-                                <p className="text-gray-400 text-sm">Stone Wall Texture</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* INTERACTIVE INTERIOR PREVIEW */}
+            <InteriorPreviewApp
+                gallery={content.gallery}
+                currentIndex={currentIndex}
+                onArtChange={setCurrentIndex}
+                previewTitle={t.art.previewTitle}
+                previewDesc={t.art.previewDesc}
+                labelFrame={t.art.labelFrame ?? 'Frame'}
+                labelSize={t.art.labelSize ?? 'Size'}
+                labelRoom={t.art.labelRoom ?? 'Room'}
+            />
 
             {/* NEW: THE CREATIVE JOURNEY */}
             <section className="py-24 px-6 bg-black text-center">
