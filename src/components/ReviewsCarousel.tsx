@@ -91,17 +91,17 @@ const ReviewsCarousel: React.FC = () => {
                                         animate={{ opacity: 1, x: 0 }}
                                         exit={{ opacity: 0, x: -50 }} // Exit animation might conflict with popLayout in grid, careful
                                         transition={{ duration: 0.5 }}
-                                        className="flex-1 min-w-[280px] max-w-sm p-6 rounded-2xl bg-white shadow-xl border border-andean-slate/5"
+                                        className="flex-1 w-full md:min-w-[280px] max-w-sm p-6 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl"
                                     >
                                         <div className="flex gap-1 mb-4 text-andean-gold">
                                             {[...Array(review.rating)].map((_, i) => (
                                                 <Star key={i} size={16} fill="currentColor" />
                                             ))}
                                         </div>
-                                        <blockquote className="text-lg italic text-andean-slate/80 mb-6 min-h-[80px]">
+                                        <blockquote className="text-lg italic text-gray-300 mb-6 min-h-[80px]">
                                             "{t.reviews[review.id as keyof typeof t.reviews]}"
                                         </blockquote>
-                                        <div className="font-bold text-andean-terracotta pointer-events-none">
+                                        <div className="font-bold text-andean-gold pointer-events-none">
                                             — {review.name}
                                         </div>
                                     </motion.div>

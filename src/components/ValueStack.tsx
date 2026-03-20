@@ -33,7 +33,7 @@ const ValueStack: React.FC = () => {
     return (
         <section className="relative py-32 px-4 overflow-hidden bg-transparent">
             {/* Background Decor */}
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent opacity-50" />
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none" />
 
             <div className="relative max-w-6xl mx-auto">
                 <motion.div
@@ -59,7 +59,7 @@ const ValueStack: React.FC = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: item.delay }}
                             whileHover={{ y: -8 }}
-                            className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-andean-gold/30 transition-all duration-500"
+                            className="group relative p-8 rounded-3xl bg-black/50 backdrop-blur-md border border-white/10 hover:bg-black/30 hover:border-andean-gold/30 transition-all duration-500"
                         >
                             <div className="mb-6 w-16 h-16 rounded-2xl bg-neutral-900 flex items-center justify-center group-hover:scale-110 group-hover:text-white transition-all duration-300 border border-white/5 group-hover:border-andean-gold/50 shadow-2xl">
                                 {item.icon}

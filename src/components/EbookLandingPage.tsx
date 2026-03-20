@@ -70,7 +70,7 @@ const EbookLandingPage: React.FC = () => {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                    className="relative z-10 text-center max-w-5xl px-6"
+                    className="relative z-10 text-center max-w-5xl px-6 mt-20 md:mt-0"
                 >
                     <motion.div
                         initial={{ opacity: 0, letterSpacing: "0.5em" }}
@@ -80,10 +80,10 @@ const EbookLandingPage: React.FC = () => {
                     >
                         The Interactive Guide
                     </motion.div>
-                    <h1 className="text-6xl md:text-9xl font-serif text-white mb-6 drop-shadow-2xl">
+                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif text-white mb-6 drop-shadow-2xl leading-tight md:leading-none">
                         {content.title}
                     </h1>
-                    <p className="text-xl md:text-3xl font-light text-gray-200 max-w-3xl mx-auto leading-relaxed glass-panel p-6 rounded-xl border border-white/10 backdrop-blur-sm">
+                    <p className="text-lg md:text-2xl font-light text-gray-200 max-w-3xl mx-auto leading-relaxed bg-black/40 p-5 md:p-8 rounded-xl border border-white/10 backdrop-blur-md">
                         {content.subtitle}
                     </p>
 
@@ -127,7 +127,7 @@ const EbookLandingPage: React.FC = () => {
             </section>
 
             {/* INSIDE THE PAGES CAROUSEL */}
-            <section className="py-24 bg-neutral-900 border-t border-white/5 relative overflow-hidden">
+            <section className="pt-32 pb-24 bg-neutral-900 border-t border-white/5 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-andean-gold/50 to-transparent" />
 
                 <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row items-end justify-between gap-8">
@@ -145,14 +145,14 @@ const EbookLandingPage: React.FC = () => {
                         <div className="flex gap-4">
                             <button
                                 onClick={() => scrollCarousel('left')}
-                                className="bg-white/5 hover:bg-white/10 p-4 rounded-full border border-white/10 transition-colors"
+                                className="bg-white/5 hover:bg-white/10 p-2 md:p-4 rounded-full border border-white/10 transition-colors"
                                 aria-label="Previous slide"
                             >
                                 <ChevronLeft size={24} className="text-white" />
                             </button>
                             <button
                                 onClick={() => scrollCarousel('right')}
-                                className="bg-white/5 hover:bg-white/10 p-4 rounded-full border border-white/10 transition-colors"
+                                className="bg-white/5 hover:bg-white/10 p-2 md:p-4 rounded-full border border-white/10 transition-colors"
                                 aria-label="Next slide"
                             >
                                 <ChevronRight size={24} className="text-white" />
@@ -344,7 +344,7 @@ const ChapterSection = React.memo(({ chapter, index, Icon }: { chapter: any, ind
                 >
                     <div className="w-full h-full bg-black/40 rounded overflow-hidden relative">
                         <img
-                            src={`https://source.unsplash.com/random/800x1000?cusco,inca,ruins,sig=${index}&q=60&auto=format`}
+                            src={`https://picsum.photos/seed/cusco${index}/800/1000`}
                             alt={chapter.title}
                             loading="lazy"
                             decoding="async"

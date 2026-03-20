@@ -13,7 +13,14 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     // Initialize language from localStorage or default to 'en'
     const [language, setLanguage] = useState<Language>(() => {
         const savedLanguage = localStorage.getItem('preferred-language');
-        return (savedLanguage === 'en' || savedLanguage === 'es') ? savedLanguage : 'en';
+        if (savedLanguage === 'en' || savedLanguage === 'es') return savedLanguage;
+        
+        try {
+            const browserLang = navigator.language.toLowerCase();
+            return browserLang.startsWith('es') ? 'es' : 'en';
+        } catch (e) {
+            return 'en';
+        }
     });
 
     // Persist language changes to localStorage
