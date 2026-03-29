@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { Mail, Send, MapPin, Instagram } from 'lucide-react';
+import ParticleBackground3D from './ParticleBackground3D';
 
 const AboutPage: React.FC = () => {
     // const { language } = useLanguage(); // Removed unused language
@@ -28,6 +29,11 @@ const AboutPage: React.FC = () => {
             <div className="fixed inset-0 opacity-[0.03] pointer-events-none z-50 mix-blend-overlay"
                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
             />
+
+            {/* NEW: Global Particle Dust */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <ParticleBackground3D baseSpeed={0.2} opacity={0.6} />
+            </div>
 
             {/* Hero - The Silhouette */}
             <section className="relative h-screen flex items-center justify-center overflow-hidden">

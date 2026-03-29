@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { BookOpen, Map, Search, Mountain, Crown, Calendar, Users, ShoppingBag, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BookOpen, Search, Mountain, Crown, Calendar, Users, ShoppingBag, ChevronLeft, ChevronRight, ArrowDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { ebookContent } from '../data/ebookContent';
-import LazyBackgroundVideo from './LazyBackgroundVideo';
 import MagneticButton from './MagneticButton';
 import FAQSection from './FAQSection';
 import BundlePreviewModal from './BundlePreviewModal';
+import EbookScrollMorph from './EbookScrollMorph';
+import LazyBackgroundVideo from './LazyBackgroundVideo';
 
 const EbookLandingPage: React.FC = () => {
     const navigate = useNavigate();
@@ -26,15 +27,15 @@ const EbookLandingPage: React.FC = () => {
         restDelta: 0.001
     });
 
-    const icons = [Mountain, Map, Crown, Users, Mountain, Calendar, Users];
+    const icons = [Mountain, Mountain, Crown, Users, Mountain, Calendar, Users];
 
     // Carousel State
     // Carousel State
     const carouselRef = useRef<HTMLDivElement>(null);
     const spreads = [
-        { id: 1, title: "Detailed Typography", image: "/first.png", desc: "Optimized for readability on all devices." },
-        { id: 2, title: "Exclusive Imagery", image: "/second.png", desc: "We use our own exclusive imagery." },
-        { id: 3, title: "Local Insight", image: "/third.png", desc: "Written by a Cusco native sharing extensive local knowledge and hidden stories." },
+        { id: 1, title: "Detailed Typography", image: "/ebook mockups/first.png", desc: "Optimized for readability on all devices." },
+        { id: 2, title: "Exclusive Imagery", image: "/ebook mockups/second.png", desc: "We use our own exclusive imagery." },
+        { id: 3, title: "Local Insight", image: "/ebook mockups/third.png", desc: "Written by a Cusco native sharing extensive local knowledge and hidden stories." },
     ];
 
     const scrollCarousel = (direction: 'left' | 'right') => {
@@ -45,7 +46,7 @@ const EbookLandingPage: React.FC = () => {
     };
 
     return (
-        <div ref={containerRef} className="relative bg-gradient-to-b from-blue-900 via-slate-950 to-black text-andean-cream font-sans selection:bg-andean-gold selection:text-neutral-950 overflow-x-hidden">
+        <div ref={containerRef} className="relative bg-gradient-to-b from-blue-900 via-slate-950 to-black text-andean-cream font-sans selection:bg-andean-gold selection:text-neutral-950" style={{ overflowX: 'clip' }}>
 
             {/* Progress Bar */}
             <motion.div
@@ -53,66 +54,29 @@ const EbookLandingPage: React.FC = () => {
                 style={{ scaleX }}
             />
 
-            {/* Hero Section */}
-            <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
-                <div className="absolute inset-0 z-0">
-                    <LazyBackgroundVideo
-                        src="/background ebook page.mp4"
-                        poster=""
-                        priority={true}
-                        className="w-full h-full object-cover opacity-80 absolute inset-0"
-                    />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_black_100%)] opacity-60" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
+            {/* HERO — Cinematic Video Background */}
+            <section className="relative h-screen flex items-center justify-center overflow-hidden">
+                <LazyBackgroundVideo
+                    src="/background ebook page.mp4"
+                    poster="/ebook mockups/first.png"
+                    priority
+                    className="absolute inset-0 w-full h-full object-cover opacity-60"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-blue-900/80" />
+
+                <div className="relative z-20 text-center px-6 max-w-4xl">
+                    <p className="text-andean-gold font-mono text-xs tracking-widest uppercase mb-6">The Andean Scroll</p>
+                    <h1 className="text-6xl md:text-8xl font-serif text-white leading-tight mb-6 drop-shadow-2xl">
+                        {content.introduction.title}
+                    </h1>
+                    <p className="text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                        {content.introduction.content}
+                    </p>
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    className="relative z-10 text-center max-w-5xl px-6 mt-20 md:mt-0"
-                >
-                    <motion.div
-                        initial={{ opacity: 0, letterSpacing: "0.5em" }}
-                        animate={{ opacity: 1, letterSpacing: "0.1em" }}
-                        transition={{ duration: 1.5, delay: 0.5 }}
-                        className="text-andean-gold text-sm md:text-xl uppercase tracking-[0.3em] font-light mb-8"
-                    >
-                        The Interactive Guide
-                    </motion.div>
-                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif text-white mb-6 drop-shadow-2xl leading-tight md:leading-none">
-                        {content.title}
-                    </h1>
-                    <p className="text-lg md:text-2xl font-light text-gray-200 max-w-3xl mx-auto leading-relaxed bg-black/40 p-5 md:p-8 rounded-xl border border-white/10 backdrop-blur-md">
-                        {content.subtitle}
-                    </p>
-
-                    <div className="mt-8 flex justify-center">
-                        <MagneticButton
-                            onClick={() => navigate('/checkout', { state: { product: 'The Andean Scroll (Ebook)', price: 8, productId: 'ebook' } })}
-                        >
-                            <div className="px-10 py-5 bg-gradient-to-r from-andean-gold to-yellow-600 text-black font-bold text-lg rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_40px_rgba(212,175,55,0.6)] transition-all flex items-center gap-3">
-                                <ShoppingBag size={20} />
-                                <span>Get the Guide - 8€</span>
-                            </div>
-                        </MagneticButton>
-                    </div>
-
-                    <button
-                        onClick={() => setShowBundlePreview(true)}
-                        className="mt-6 text-sm text-gray-400 hover:text-white transition-colors underline underline-offset-4"
-                    >
-                        Preview what's inside
-                    </button>
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
-                >
-                    <ArrowDown size={32} />
-                </motion.div>
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+                    <ArrowDown className="w-6 h-6 text-andean-gold/70" />
+                </div>
             </section>
 
             {/* Introduction - Parallax Section */}
@@ -189,53 +153,27 @@ const EbookLandingPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* MAP SECTION */}
-            <section className="py-24 bg-black relative">
-                <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <div className="text-andean-gold font-mono text-sm tracking-widest mb-4 flex items-center gap-2">
-                            <Map size={16} />
-                            {t.ebook.blueprint.title}
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">
-                            {t.ebook.blueprint.text}
-                        </h2>
-                        <div className="space-y-6 text-gray-400 leading-relaxed">
-                            <p>
-                                Beyond the tourist trails lay the ceques—sacred invisible lines radiating from Cusco.
-                                We have mapped the most energetically powerful sites mentioned in the guide.
-                            </p>
-                            <ul className="space-y-4">
-                                {(t.ebook.blueprint?.items || []).map((item, idx) => (
-                                    <motion.li
-                                        key={idx}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: idx * 0.1 }}
-                                        className="flex items-start gap-4"
-                                    >
-                                        <div className="w-2 h-2 rounded-full bg-andean-gold mt-2 shrink-0 shadow-[0_0_10px_rgba(255,215,0,0.5)]" />
-                                        <span className="text-gray-300 text-lg">{item}</span>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </div>
+            {/* EBOOK SCROLL MORPH */}
+            <EbookScrollMorph folderPath="/ebook-morph" filePrefix="ezgif-frame-" frameCount={120}>
+                <div className="text-center lg:text-left">
+                    <div className="text-andean-gold font-mono text-sm tracking-widest mb-4 flex items-center gap-2">
+                        <BookOpen size={16} />
+                        {t.ebook.insidePages.title}
                     </div>
-
-                    {/* Interactive Map */}
-                    <div className="relative w-full aspect-[16/9] border border-white/10 rounded-2xl bg-neutral-900 overflow-hidden group">
-                        {/* Background Image */}
-                        <img
-                            src="/interactive.png"
-                            alt="The Inca Blueprint Map"
-                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 scale-110"
-                        />
-                        {/* Overlay Gradient for Text Contrast */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                    </div>
+                    <h2 className="text-5xl md:text-6xl font-serif text-white mb-6 leading-tight">
+                        {content.introduction.title}
+                    </h2>
+                    <p className="text-lg text-gray-400 leading-relaxed mb-8 max-w-lg">
+                        {content.introduction.content}
+                    </p>
+                    <MagneticButton onClick={() => navigate('/checkout', { state: { product: 'The Andean Scroll (Ebook)', price: 8, productId: 'ebook' } })}>
+                        <div className="px-8 py-4 bg-andean-gold text-black text-sm font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-3">
+                            <ShoppingBag size={18} />
+                            Get the Guide — 8€
+                        </div>
+                    </MagneticButton>
                 </div>
-            </section>
+            </EbookScrollMorph>
 
             {/* Scrollytelling Chapters */}
             <div className="relative z-10">

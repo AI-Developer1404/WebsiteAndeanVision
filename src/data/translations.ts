@@ -394,6 +394,19 @@ export const translations = {
                     // I will add the others briefly to respect the user's content.
                 ]
             },
+        },
+        teardown: {
+            title: "THE DIGITAL RELICS BUNDLE",
+            cta: "Get the Bundle",
+            artTitle: "Cinematic Art Collection",
+            soundTitle: "Andean Echoes Soundtrack",
+            ebookTitle: "The Andean Scroll",
+            bundleTitle: "The Digital Relic",
+            ebookDesc: "Interactive Ebook & Historical Deep Dive",
+            recordTitle: "Original Syllabus Album",
+            recordDesc: "12 High-Fidelity Tracks (MP3/WAV)",
+            printsTitle: "Cinematic Art Collection",
+            printsDesc: "6 Museum-Grade High-Res Prints"
         }
     },
     es: {
@@ -789,6 +802,19 @@ export const translations = {
                     }
                 ]
             },
+        },
+        teardown: {
+            title: "EL PAQUETE DE RELIQUIAS DIGITALES",
+            cta: "Obtén el Paquete",
+            artTitle: "Colección de Arte Cinematográfico",
+            soundTitle: "Banda Sonora Ecos Andinos",
+            ebookTitle: "El Pergamino Andino",
+            bundleTitle: "La Reliquia Digital",
+            ebookDesc: "Ebook Interactivo e Inmersión Histórica",
+            recordTitle: "Álbum Original",
+            recordDesc: "12 Pistas de Alta Fidelidad (MP3/WAV)",
+            printsTitle: "Colección de Arte Cinematográfico",
+            printsDesc: "6 Impresiones de Alta Resolución (Grado Museo)"
         }
     }
 };
